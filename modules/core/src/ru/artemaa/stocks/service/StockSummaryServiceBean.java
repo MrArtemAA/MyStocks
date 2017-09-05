@@ -63,6 +63,8 @@ public class StockSummaryServiceBean implements StockSummaryService {
         );
 
         AtomicInteger totalDividendsAmount = new AtomicInteger(0);
+        AtomicInteger totalPurchasedAmount = new AtomicInteger(0);
+        AtomicInteger totalSoldAmount = new AtomicInteger(0);
         StockSummary summary = new StockSummary();
         summary.setStock(stock);
 
@@ -72,11 +74,13 @@ public class StockSummaryServiceBean implements StockSummaryService {
             switch (operation.getType()) {
                 case Purchase:
                     summary.setAmount(summary.getAmount() + operation.getAmount());
-                    summary.setTotalPrice(summary.getTotalPrice() + operation.getPrice());
+                    totalPurchasedAmount.addAndGet(operation.getAmount());
+                    summary.setTotalPurchasePrice(summary.getTotalPurchasePrice() + operation.getPrice());
                     break;
                 case Sale:
                     summary.setAmount(summary.getAmount() - operation.getAmount());
-                    summary.setTotalPrice(summary.getTotalPrice() - operation.getPrice());
+                    totalSoldAmount.addAndGet(operation.getAmount());
+                    summary.setTotalSellPrice(summary.getTotalSellPrice() - operation.getPrice());
                     break;
                 case Dividends:
                     summary.setTotalDividends(summary.getTotalDividends() + operation.getPrice());
@@ -85,9 +89,10 @@ public class StockSummaryServiceBean implements StockSummaryService {
             }
         });
 
-        summary.setAvgPrice(summary.getTotalPrice() / summary.getAmount());
+        summary.setAvgPurchasePrice(summary.getTotalPurchasePrice() / totalPurchasedAmount.get());
+        summary.setAvgSellPrice(summary.getTotalSellPrice() / totalSoldAmount.get());
         summary.setAvgDividends(summary.getTotalDividends() / totalDividendsAmount.get());
-        summary.setPriceDividendsRatio(summary.getAvgDividends() / summary.getAvgPrice() * 100);
+        summary.setPriceDividendsRatio(summary.getAvgDividends() / summary.getAvgPurchasePrice() * 100);
 
         return summary;
     }

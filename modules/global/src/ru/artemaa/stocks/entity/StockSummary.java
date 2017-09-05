@@ -15,10 +15,16 @@ public class StockSummary extends AbstractNotPersistentEntity {
     protected Integer amount = 0;
 
     @MetaProperty
-    protected Double totalPrice = 0.0;
+    protected Double totalPurchasePrice;
 
     @MetaProperty
-    protected Double avgPrice = 0.0;
+    protected Double avgPurchasePrice;
+
+    @MetaProperty
+    protected Double totalSellPrice;
+
+    @MetaProperty
+    protected Double avgSellPrice;
 
     @MetaProperty
     protected Double totalDividends = 0.0;
@@ -28,6 +34,40 @@ public class StockSummary extends AbstractNotPersistentEntity {
 
     @MetaProperty
     protected Double priceDividendsRatio = 0.0;
+
+    public void setAvgPurchasePrice(Double avgPurchasePrice) {
+        this.avgPurchasePrice = avgPurchasePrice;
+    }
+
+    public Double getAvgPurchasePrice() {
+        return avgPurchasePrice;
+    }
+
+    public void setTotalSellPrice(Double totalSellPrice) {
+        this.totalSellPrice = totalSellPrice;
+    }
+
+    public Double getTotalSellPrice() {
+        return totalSellPrice;
+    }
+
+    public void setAvgSellPrice(Double avgSellPrice) {
+        this.avgSellPrice = avgSellPrice;
+    }
+
+    public Double getAvgSellPrice() {
+        return avgSellPrice;
+    }
+
+
+    public void setTotalPurchasePrice(Double totalPurchasePrice) {
+        this.totalPurchasePrice = totalPurchasePrice;
+    }
+
+    public Double getTotalPurchasePrice() {
+        return totalPurchasePrice;
+    }
+
 
     public void setStock(Stock stock) {
         this.stock = stock;
@@ -43,22 +83,6 @@ public class StockSummary extends AbstractNotPersistentEntity {
 
     public Integer getAmount() {
         return amount;
-    }
-
-    public void setTotalPrice(Double totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public Double getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setAvgPrice(Double avgPrice) {
-        this.avgPrice = avgPrice;
-    }
-
-    public Double getAvgPrice() {
-        return avgPrice;
     }
 
     public void setTotalDividends(Double totalDividends) {

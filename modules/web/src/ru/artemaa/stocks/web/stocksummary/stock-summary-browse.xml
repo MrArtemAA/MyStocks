@@ -31,8 +31,10 @@
             <columns>
                 <column id="stock"/>
                 <column id="amount"/>
-                <column id="totalPrice"/>
-                <column id="avgPrice"/>
+                <column id="totalPurchasePrice"/>
+                <column id="avgPurchasePrice"/>
+                <column id="totalSellPrice"/>
+                <column id="avgSellPrice"/>
                 <column id="totalDividends"/>
                 <column id="avgDividends"/>
                 <column id="priceDividendsRatio"/>
