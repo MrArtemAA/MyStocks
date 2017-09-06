@@ -15,16 +15,16 @@ public class StockSummary extends AbstractNotPersistentEntity {
     protected Integer amount = 0;
 
     @MetaProperty
-    protected Double totalPurchasePrice;
+    protected Double totalPurchasePrice = 0.0;
 
     @MetaProperty
-    protected Double avgPurchasePrice;
+    protected Double avgPurchasePrice = 0.0;
 
     @MetaProperty
-    protected Double totalSellPrice;
+    protected Double totalSellPrice = 0.0;
 
     @MetaProperty
-    protected Double avgSellPrice;
+    protected Double avgSellPrice = 0.0;
 
     @MetaProperty
     protected Double totalDividends = 0.0;

@@ -48,6 +48,7 @@ public class StockSummaryServiceBean implements StockSummaryService {
 
         return stocks.stream()
                 .map(this::getStockSummary)
+                .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
@@ -61,6 +62,8 @@ public class StockSummaryServiceBean implements StockSummaryService {
                 LoadContext.create(Operation.class)
                         .setQuery(query)
         );
+
+        if (operations.isEmpty()) return null;
 
         AtomicInteger totalDividendsAmount = new AtomicInteger(0);
         AtomicInteger totalPurchasedAmount = new AtomicInteger(0);
@@ -80,7 +83,7 @@ public class StockSummaryServiceBean implements StockSummaryService {
                 case Sale:
                     summary.setAmount(summary.getAmount() - operation.getAmount());
                     totalSoldAmount.addAndGet(operation.getAmount());
-                    summary.setTotalSellPrice(summary.getTotalSellPrice() - operation.getPrice());
+                    summary.setTotalSellPrice(summary.getTotalSellPrice() + operation.getPrice());
                     break;
                 case Dividends:
                     summary.setTotalDividends(summary.getTotalDividends() + operation.getPrice());
