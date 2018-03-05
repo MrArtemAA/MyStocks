@@ -2,10 +2,10 @@ package ru.artemaa.stocks.entity;
 
 import com.haulmont.chile.core.annotations.MetaClass;
 import com.haulmont.chile.core.annotations.MetaProperty;
-import com.haulmont.cuba.core.entity.AbstractNotPersistentEntity;
+import com.haulmont.cuba.core.entity.BaseUuidEntity;
 
 @MetaClass(name = "stocks$StockSummary")
-public class StockSummary extends AbstractNotPersistentEntity {
+public class StockSummary extends BaseUuidEntity {
     private static final long serialVersionUID = 5580946325692918983L;
 
     @MetaProperty(mandatory = true)
