@@ -3,6 +3,9 @@ package ru.artemaa.stocks.entity;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.Lookup;
 import com.haulmont.cuba.core.entity.annotation.LookupType;
+import com.haulmont.cuba.core.entity.annotation.OnDelete;
+import com.haulmont.cuba.core.entity.annotation.OnDeleteInverse;
+import com.haulmont.cuba.core.global.DeletePolicy;
 
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
@@ -15,9 +18,19 @@ import java.util.Date;
 public class Operation extends StandardEntity {
     private static final long serialVersionUID = 7569389514187153852L;
 
+    @Lookup(type = LookupType.DROPDOWN, actions = {"lookup", "open"})
     @NotNull
-    @Lookup(type = LookupType.DROPDOWN, actions = {"lookup"})
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDeleteInverse(DeletePolicy.UNLINK)
+    @OnDelete(DeletePolicy.UNLINK)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PORTFOLIO_ID")
+    protected Portfolio portfolio;
+
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @OnDelete(DeletePolicy.UNLINK)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @NotNull
+    @Lookup(type = LookupType.DROPDOWN, actions = {"lookup", "open"})
     @JoinColumn(name = "STOCK_ID")
     protected Stock stock;
 
@@ -39,6 +52,15 @@ public class Operation extends StandardEntity {
     @NotNull
     @Column(name = "AMOUNT", nullable = false)
     protected Integer amount;
+
+
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
+    }
+
+    public Portfolio getPortfolio() {
+        return portfolio;
+    }
 
 
     public void setStock(Stock stock) {

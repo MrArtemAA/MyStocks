@@ -16,16 +16,20 @@
                 <![CDATA[select e from stocks$Stock e]]>
             </query>
         </collectionDatasource>
+        <collectionDatasource id="portfoliosDs"
+                              class="ru.artemaa.stocks.entity.Portfolio"
+                              view="_minimal"/>
     </dsContext>
     <dialogMode forceDialog="true"
                 height="AUTO"
-                modal="true"
                 width="600"/>
     <layout expand="windowActions"
             spacing="true">
         <fieldGroup id="fieldGroup"
                     datasource="operationDs">
             <column width="250px">
+                <field optionsDatasource="portfoliosDs"
+                       property="portfolio"/>
                 <field optionsDatasource="stocksDs"
                        property="stock"/>
                 <field property="type"/>

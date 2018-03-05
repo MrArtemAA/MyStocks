@@ -12,5 +12,7 @@
           name="operation-with-stock-view">
         <property name="stock"
                   view="_minimal"/>
+        <property name="portfolio"
+                  view="_minimal"/>
     </view>
 </views>
