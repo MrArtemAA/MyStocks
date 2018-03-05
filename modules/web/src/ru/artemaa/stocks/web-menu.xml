@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
-    <menu id="application-stocks"
+    <item insertBefore="administration"
+          openType="NEW_TAB"
+          screen="stocks$Operation.browse"/>
+    <menu id="references"
           insertBefore="administration">
-        <item screen="stocks$Currency.browse"/>
-        <item screen="stocks$Stock.browse"/>
-        <item screen="stocks$Operation.browse"/>
-        <item screen="stocks$StockSummary.browse"/>
+        <item openType="DIALOG"
+              screen="stocks$Stock.browse"/>
+        <item openType="DIALOG"
+              screen="stocks$Currency.browse"/>
     </menu>
 </menu-config>
