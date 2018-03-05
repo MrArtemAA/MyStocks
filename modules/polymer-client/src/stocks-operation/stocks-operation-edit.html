@@ -1,0 +1,89 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html"> 
+<link rel="import" href="../../bower_components/paper-toast/paper-toast.html"> 
+<link rel="import" href="../../bower_components/paper-button/paper-button.html"> 
+<link rel="import" href="../../bower_components/paper-card/paper-card.html"> 
+<link rel="import" href="../../bower_components/cuba-app/cuba-localize-behavior.html"> 
+<link rel="import" href="../../bower_components/cuba-ui/cuba-entity-edit-view-behavior.html"> 
+<link rel="import" href="../../bower_components/cuba-data/cuba-entity.html"> 
+<link rel="import" href="../../bower_components/cuba-form/cuba-entity-form.html"> 
+<link rel="import" href="../../bower_components/cuba-styles/cuba-styles.html"> 
+<link rel="import" href="../../bower_components/cuba-ui/cuba-lookup.html"> 
+<link rel="import" href="../../bower_components/cuba-data/cuba-entities.html"> 
+<link rel="import" href="../../bower_components/vaadin-combo-box/vaadin-combo-box.html"> 
+<link rel="import" href="../../bower_components/paper-input/paper-input.html"> 
+<link rel="import" href="../../bower_components/vaadin-date-picker/vaadin-date-picker-light.html"> 
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html"> 
+<link rel="import" href="../shared-styles.html"> 
+<dom-module id="stocks-operation-edit"> 
+  <template> 
+    <style include="cuba-styles"></style> 
+    <style include="shared-styles"></style> 
+    <style>
+      paper-card {
+        display: block;
+      }
+    </style> 
+    <cuba-entity entity-name="stocks$Operation" entity-id="[[entityId]]" view="operation-with-stock-view" data="{{entity}}"></cuba-entity> 
+    <cuba-entity-form id="form" entity-name="stocks$Operation" entity="{{entity}}" on-cuba-form-response="_onSuccess" on-cuba-form-error="_onError" server-errors="{{serverErrors}}"> 
+      <paper-card> 
+        <div class="card-content"> 
+          <cuba-lookup picked-entity="{{entity.portfolio}}"> 
+            <div slot="dropdown"> 
+              <cuba-entities entity-name="stocks$Portfolio" view="_minimal" data="{{entity_portfolioOptions}}"></cuba-entities> 
+              <vaadin-combo-box label="[[msg('stocks$Operation.portfolio')]]" items="[[entity_portfolioOptions]]" selected-item="{{entity.portfolio}}" item-label-path="_instanceName" item-value-path="id" value="[[entity.portfolio.id]]" error-message="[[serverErrors.portfolio]]" invalid="[[_isInvalid(serverErrors.portfolio)]]"> 
+              </vaadin-combo-box> 
+            </div> 
+          </cuba-lookup> 
+          <cuba-lookup picked-entity="{{entity.stock}}"> 
+            <div slot="dropdown"> 
+              <cuba-entities entity-name="stocks$Stock" view="_minimal" data="{{entity_stockOptions}}"></cuba-entities> 
+              <vaadin-combo-box label="[[msg('stocks$Operation.stock')]]" items="[[entity_stockOptions]]" selected-item="{{entity.stock}}" item-label-path="_instanceName" item-value-path="id" value="[[entity.stock.id]]" required error-message="[[serverErrors.stock]]" invalid="[[_isInvalid(serverErrors.stock)]]"> 
+              </vaadin-combo-box> 
+            </div> 
+          </cuba-lookup> 
+          <vaadin-combo-box label="[[msg('stocks$Operation.type')]]" items="[[enumValues('ru.artemaa.stocks.entity.OperationType')]]" value="{{entity.type}}" error-message="[[serverErrors.type]]" invalid="[[_isInvalid(serverErrors.type)]]" required> 
+          </vaadin-combo-box> 
+          <vaadin-date-picker-light attr-for-value="value" value="{{entity.date}}" required> 
+            <paper-input label="[[msg('stocks$Operation.date')]]" error-message="[[serverErrors.date]]" invalid="[[_isInvalid(serverErrors.date)]]"> 
+              <iron-icon icon="event" slot="suffix"></iron-icon> 
+            </paper-input> 
+          </vaadin-date-picker-light> 
+          <paper-input type="number" value="{{entity.price}}" label="[[msg('stocks$Operation.price')]]" step="any" required error-message="[[serverErrors.price]]" invalid="[[_isInvalid(serverErrors.price)]]"> 
+          </paper-input> 
+          <paper-input type="number" value="{{entity.amount}}" label="[[msg('stocks$Operation.amount')]]" required error-message="[[serverErrors.amount]]" invalid="[[_isInvalid(serverErrors.amount)]]"> 
+          </paper-input> 
+        </div> 
+        <div class="card-actions"> 
+          <paper-button on-tap="_delete" hidden$="[[!entityId]]">
+             [[msg('Delete')]] 
+          </paper-button> 
+          <paper-button on-tap="_cancel">
+             [[msg('Cancel')]] 
+          </paper-button> 
+          <paper-button on-tap="_save">
+             [[msg('Save')]] 
+          </paper-button> 
+        </div> 
+      </paper-card> 
+    </cuba-entity-form> 
+    <paper-toast id="errorMessage" horizontal-align="right">
+      [[msg('Failed to save')]]
+    </paper-toast> 
+  </template> 
+  <script>
+    {
+      /**
+       * @extends {Polymer.Element}
+       * @appliesMixin CubaLocalizeBehavior
+       * @appliesMixin CubaEntityEditViewBehavior
+       */
+      class StocksOperationEdit extends Polymer.mixinBehaviors([CubaLocalizeBehavior, CubaEntityEditViewBehavior], Polymer.Element) {
+
+        static get is() { return 'stocks-operation-edit'; }
+
+      }
+
+      customElements.define(StocksOperationEdit.is, StocksOperationEdit);
+    }
+  </script> 
+</dom-module>
