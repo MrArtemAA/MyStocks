@@ -10,7 +10,6 @@ public interface StockSummaryService {
     String NAME = "stocks_StockSummaryService";
 
     StockSummary getStockSummary(UUID stockId);
-
     List<StockSummary> getStockSummaries();
 
 }

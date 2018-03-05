@@ -1,22 +1,14 @@
 package ru.artemaa.stocks.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.util.Date;
-import javax.persistence.Column;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.Lookup;
 import com.haulmont.cuba.core.entity.annotation.LookupType;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+
+import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
-import com.haulmont.cuba.security.entity.User;
-import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Table(name = "STOCKS_OPERATION")
 @Entity(name = "stocks$Operation")
@@ -36,7 +28,7 @@ public class Operation extends StandardEntity {
     @Temporal(TemporalType.DATE)
     @NotNull
     @Column(name = "DATE_", nullable = false)
-    protected Date date;
+    protected Date date = new Date();
 
     @DecimalMin("0")
     @NotNull
