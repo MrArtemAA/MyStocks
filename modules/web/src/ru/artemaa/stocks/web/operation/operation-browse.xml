@@ -6,13 +6,13 @@
         lookupComponent="operationsTable"
         messagesPack="ru.artemaa.stocks.web.operation">
     <dsContext>
-        <collectionDatasource id="operationsDs"
-                              class="ru.artemaa.stocks.entity.Operation"
-                              view="operation-browse-view">
+        <groupDatasource id="operationsDs"
+                         class="ru.artemaa.stocks.entity.Operation"
+                         view="operation-browse-view">
             <query>
-                <![CDATA[select e from stocks$Operation e where e.createdBy = :session$userLogin]]>
+                <![CDATA[select e from stocks$Operation e order by e.date desc]]>
             </query>
-        </collectionDatasource>
+        </groupDatasource>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
@@ -23,9 +23,9 @@
                 datasource="operationsDs">
             <properties include=".*"/>
         </filter>
-        <table id="operationsTable"
-               width="100%"
-               multiselect="true">
+        <groupTable id="operationsTable"
+                    multiselect="true"
+                    width="100%">
             <actions>
                 <action id="create"/>
                 <action id="edit"/>
@@ -37,6 +37,7 @@
                 <column id="date"/>
                 <column id="price"/>
                 <column id="amount"/>
+                <column id="portfolio"/>
             </columns>
             <rows datasource="operationsDs"/>
             <rowsCount/>
@@ -49,6 +50,6 @@
                 <button id="removeBtn"
                         action="operationsTable.remove"/>
             </buttonsPanel>
-        </table>
+        </groupTable>
     </layout>
 </window>

@@ -2,7 +2,6 @@ package ru.artemaa.stocks.service;
 
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.LoadContext;
-import com.haulmont.cuba.core.global.UserSessionSource;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 import ru.artemaa.stocks.entity.Operation;
@@ -25,15 +24,9 @@ public class StockSummaryServiceBean implements StockSummaryService {
     @Inject
     private DataManager dataManager;
 
-    @Inject
-    private UserSessionSource userSessionSource;
-
     @Override
     public StockSummary getStockSummary(final UUID stockId) {
-        Stock stock = dataManager.load(
-                LoadContext.create(Stock.class)
-                        .setId(stockId));
-
+        Stock stock = dataManager.load(LoadContext.create(Stock.class).setId(stockId));
         return getStockSummary(stock);
     }
 
@@ -54,21 +47,21 @@ public class StockSummaryServiceBean implements StockSummaryService {
 
     private StockSummary getStockSummary(final Stock stock) {
         LoadContext.Query query = LoadContext.createQuery("select o from stocks$Operation o where " +
-                "o.stock.id = :stockId and o.createdBy = :userLogin")
-                .setParameter("stockId", stock.getId())
-                .setParameter("userLogin", userSessionSource.getUserSession().getCurrentOrSubstitutedUser().getLogin());
+                "o.stock.id = :stockId")
+                .setParameter("stockId", stock.getId());
 
         List<Operation> operations = dataManager.loadList(
                 LoadContext.create(Operation.class)
                         .setQuery(query)
         );
 
-        if (operations.isEmpty()) return null;
+        StockSummary summary = new StockSummary();
+        if (operations.isEmpty()) return summary;
 
         AtomicInteger totalDividendsAmount = new AtomicInteger(0);
         AtomicInteger totalPurchasedAmount = new AtomicInteger(0);
         AtomicInteger totalSoldAmount = new AtomicInteger(0);
-        StockSummary summary = new StockSummary();
+
         summary.setStock(stock);
 
         operations.forEach(operation -> {
