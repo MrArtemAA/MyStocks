@@ -6,6 +6,7 @@
         <class>ru.artemaa.stocks.entity.Currency</class>
         <class>ru.artemaa.stocks.entity.Operation</class>
         <class>ru.artemaa.stocks.entity.Stock</class>
-        <class>ru.artemaa.stocks.entity.Portfolio</class>
+        <class>ru.artemaa.stocks.entity.portfolio.Portfolio</class>
+        <class>ru.artemaa.stocks.entity.portfolio.PortfolioIncome</class>
     </persistence-unit>
 </persistence>

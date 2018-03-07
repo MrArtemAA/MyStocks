@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://editorCaption"
+        class="ru.artemaa.stocks.web.portfolioincome.PortfolioIncomeEdit"
+        datasource="portfolioIncomeDs"
+        focusComponent="fieldGroup"
+        messagesPack="ru.artemaa.stocks.web.portfolioincome">
+    <dsContext>
+        <datasource id="portfolioIncomeDs"
+                    class="ru.artemaa.stocks.entity.portfolio.PortfolioIncome"
+                    view="portfolioIncome-view"/>
+    </dsContext>
+    <dialogMode forceDialog="true"
+                height="AUTO"
+                width="600"/>
+    <layout expand="windowActions"
+            spacing="true">
+        <fieldGroup id="fieldGroup"
+                    datasource="portfolioIncomeDs">
+            <column width="250px">
+                <field property="date"/>
+                <field property="amount"/>
+            </column>
+        </fieldGroup>
+        <frame id="windowActions"
+               screen="editWindowActions"/>
+    </layout>
+</window>

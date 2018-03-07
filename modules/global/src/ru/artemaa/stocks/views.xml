@@ -15,4 +15,41 @@
         <property name="portfolio"
                   view="_minimal"/>
     </view>
+    <view class="ru.artemaa.stocks.entity.portfolio.Portfolio"
+          extends="_local"
+          name="portfolio-edit-view">
+        <property name="name"/>
+        <property name="income"
+                  view="_minimal">
+            <property name="date"/>
+            <property name="amount"/>
+        </property>
+    </view>
+    <view class="ru.artemaa.stocks.entity.portfolio.PortfolioIncome"
+          extends="_local"
+          name="portfolioIncome-view">
+        <property name="date"/>
+        <property name="amount"/>
+    </view>
+    <view class="ru.artemaa.stocks.entity.portfolio.Portfolio"
+          extends="_local"
+          name="portfolio-browse-view">
+        <property name="name"/>
+    </view>
+    <view class="ru.artemaa.stocks.entity.Operation"
+          extends="_local"
+          name="operation-browse-view">
+        <property name="portfolio"
+                  view="_minimal">
+            <property name="name"/>
+        </property>
+        <property name="stock"
+                  view="_minimal">
+            <property name="name"/>
+        </property>
+        <property name="type"/>
+        <property name="date"/>
+        <property name="price"/>
+        <property name="amount"/>
+    </view>
 </views>

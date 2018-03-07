@@ -17,7 +17,7 @@
             </query>
         </collectionDatasource>
         <collectionDatasource id="portfoliosDs"
-                              class="ru.artemaa.stocks.entity.Portfolio"
+                              class="ru.artemaa.stocks.entity.portfolio.Portfolio"
                               view="_minimal"/>
     </dsContext>
     <dialogMode forceDialog="true"

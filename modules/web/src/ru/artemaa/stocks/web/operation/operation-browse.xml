@@ -8,7 +8,7 @@
     <dsContext>
         <collectionDatasource id="operationsDs"
                               class="ru.artemaa.stocks.entity.Operation"
-                              view="operation-with-stock-view">
+                              view="operation-browse-view">
             <query>
                 <![CDATA[select e from stocks$Operation e where e.createdBy = :session$userLogin]]>
             </query>
