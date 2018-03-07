@@ -1,5 +1,6 @@
 package ru.artemaa.stocks.web.operation;
 
+import com.haulmont.cuba.core.global.PersistenceHelper;
 import com.haulmont.cuba.gui.components.AbstractEditor;
 import com.haulmont.cuba.gui.components.LookupField;
 import com.haulmont.cuba.gui.components.PickerField;
@@ -31,13 +32,15 @@ public class OperationEdit extends AbstractEditor<Operation> {
     public void init(Map<String, Object> params) {
         super.init(params);
 
-        operationType.addValueChangeListener(e -> {
-            OperationType value = (OperationType) e.getValue();
-            Stock stock = stockPicker.getValue();
-            if (stock != null && value == Dividends) {
-                StockSummary stockSummary = stockSummaryService.getStockSummary(stock.getId());
-                amount.setValue(stockSummary.getAmount());
-            }
-        });
+        if (PersistenceHelper.isNew(getItem())) {
+            operationType.addValueChangeListener(e -> {
+                OperationType value = (OperationType) e.getValue();
+                Stock stock = stockPicker.getValue();
+                if (stock != null && value == Dividends) {
+                    StockSummary stockSummary = stockSummaryService.getStockSummary(stock.getId());
+                    amount.setValue(stockSummary.getAmount());
+                }
+            });
+        }
     }
 }
