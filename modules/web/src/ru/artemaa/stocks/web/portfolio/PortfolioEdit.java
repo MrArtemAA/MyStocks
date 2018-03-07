@@ -1,5 +1,6 @@
 package ru.artemaa.stocks.web.portfolio;
 
+import com.haulmont.cuba.core.global.PersistenceHelper;
 import com.haulmont.cuba.gui.components.AbstractEditor;
 import com.haulmont.cuba.gui.components.TextField;
 import com.haulmont.cuba.gui.components.actions.CreateAction;
@@ -21,7 +22,9 @@ public class PortfolioEdit extends AbstractEditor<Portfolio> {
     @Override
     protected void postInit() {
         super.postInit();
-        updateTotalAmount();
+        if (!PersistenceHelper.isNew(getItem())) {
+            updateTotalAmount();
+        }
 
         createAction.setAfterCommitHandler(entity -> updateTotalAmount());
         editAction.setAfterCommitHandler(entity -> updateTotalAmount());
