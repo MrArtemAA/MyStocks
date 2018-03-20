@@ -12,6 +12,8 @@
             <map>
                 <entry key="stocks_StockSummaryService"
                        value="ru.artemaa.stocks.service.StockSummaryService"/>
+                <entry key="stocks_InvestIdeaNotificationService"
+                       value="ru.artemaa.stocks.service.InvestIdeaNotificationService"/>
             </map>
         </property>
     </bean>
