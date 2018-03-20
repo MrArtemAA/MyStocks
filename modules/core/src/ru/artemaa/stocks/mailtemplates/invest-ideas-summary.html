@@ -1,0 +1,10 @@
+<html>
+    <body>
+        <h3>Доброе утро!</h3>
+        <b>Посмотрите список инвестиционных идей на предмет реализации:</b>
+        <#list investIdeas as investIdea>
+            <p>${investIdea.name}. Дата окончания: ${investIdea.endDate?string('dd.MM.yyyy')}</p>
+        </#list>
+        <br/>
+    </body>
+</html>
