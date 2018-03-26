@@ -18,10 +18,7 @@
         </collectionDatasource>
         <collectionDatasource id="currenciesDs"
                               class="ru.artemaa.stocks.entity.Currency"
-                              view="_minimal">
-            <query>
-                <![CDATA[select e from stocks$Currency e]]>
-            </query>
+                              datasourceClass="ru.artemaa.stocks.web.currency.CurrencyDatasource">
         </collectionDatasource>
     </dsContext>
     <actions>

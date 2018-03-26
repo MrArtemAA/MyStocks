@@ -11,6 +11,9 @@ import com.haulmont.cuba.core.config.SourceType;
  */
 @Source(type = SourceType.DATABASE)
 public interface StocksConfig extends Config {
-    @Property("user.email")
+    @Property("stocks.user.email")
     String getUserEmail();
+
+    @Property("stocks.currency.codes")
+    String getCurrencyCodes();
 }

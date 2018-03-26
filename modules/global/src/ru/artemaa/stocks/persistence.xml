@@ -3,7 +3,6 @@
              version="2.0">
     <persistence-unit name="Stocks"
                       transaction-type="RESOURCE_LOCAL">
-        <class>ru.artemaa.stocks.entity.Currency</class>
         <class>ru.artemaa.stocks.entity.Operation</class>
         <class>ru.artemaa.stocks.entity.Stock</class>
         <class>ru.artemaa.stocks.entity.portfolio.Portfolio</class>

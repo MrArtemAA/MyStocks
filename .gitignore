@@ -11,3 +11,5 @@ test-run
 docker-image
 modules/core/web/META-INF/heroku-context.xml
 modules/core/web/META-INF/jetty-env.xml
+dataSources
+.ideaDataSources
