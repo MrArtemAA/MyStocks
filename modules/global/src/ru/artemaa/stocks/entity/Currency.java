@@ -1,26 +1,19 @@
 package ru.artemaa.stocks.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.validation.constraints.NotNull;
-import org.hibernate.validator.constraints.Length;
-import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.chile.core.annotations.MetaClass;
+import com.haulmont.chile.core.annotations.MetaProperty;
 import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.cuba.core.entity.BaseStringIdEntity;
 
 @NamePattern("%s|name")
-@Table(name = "STOCKS_CURRENCY")
-@Entity(name = "stocks$Currency")
-public class Currency extends StandardEntity {
+@MetaClass(name = "stocks$Currency")
+public class Currency extends BaseStringIdEntity {
     private static final long serialVersionUID = -5687224572426293983L;
 
-    @NotNull
-    @Column(name = "NAME", nullable = false, length = 80)
+    @MetaProperty
     protected String name;
 
-    @Length(min = 3, max = 3)
-    @NotNull
-    @Column(name = "CODE", nullable = false, unique = true, length = 3)
+    @MetaProperty
     protected String code;
 
     public void setName(String name) {
@@ -40,4 +33,13 @@ public class Currency extends StandardEntity {
     }
 
 
+    @Override
+    public String getId() {
+        return code;
+    }
+
+    @Override
+    public void setId(String id) {
+        this.code = id;
+    }
 }

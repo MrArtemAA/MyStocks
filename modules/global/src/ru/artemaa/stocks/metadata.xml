@@ -3,5 +3,6 @@
     <metadata-model namespace="stocks"
                     root-package="ru.artemaa.stocks">
         <class>ru.artemaa.stocks.entity.StockSummary</class>
+        <class>ru.artemaa.stocks.entity.Currency</class>
     </metadata-model>
 </metadata>

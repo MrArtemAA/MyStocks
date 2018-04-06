@@ -17,4 +17,6 @@
             template="ru/artemaa/stocks/web/portfolio/portfolio-browse.xml"/>
     <screen id="stocks$Portfolio.edit"
             template="ru/artemaa/stocks/web/portfolio/portfolio-edit.xml"/>
+    <screen id="stocks$InvestIdea.browse"
+            template="ru/artemaa/stocks/web/investidea/invest-idea-browse.xml"/>
 </screen-config>

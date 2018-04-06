@@ -1,25 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ Copyright (c) 2017 Haulmont Technology Ltd. All Rights Reserved.
+  ~ Haulmont Technology proprietary and confidential.
+  ~ Use is subject to license terms.
+  -->
 <window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
         caption="msg://caption"
-        class="ru.artemaa.stocks.web.stock.StockBrowse"
-        focusComponent="stocksTable"
-        lookupComponent="stocksTable"
-        messagesPack="ru.artemaa.stocks.web.stock">
+        class="ru.artemaa.stocks.web.investidea.InvestIdeaBrowse"
+        focusComponent="table"
+        lookupComponent="table"
+        messagesPack="ru.artemaa.stocks.web.investidea">
     <dsContext>
-        <datasource id="stockDs"
-                    class="ru.artemaa.stocks.entity.Stock"
-                    view="stock-edit-view"/>
-        <collectionDatasource id="stocksDs"
-                              class="ru.artemaa.stocks.entity.Stock"
-                              view="_local">
+        <datasource id="investIdeaDs"
+                    class="ru.artemaa.stocks.entity.InvestIdea"
+                    view="_local"/>
+        <groupDatasource id="investIdeasDs"
+                         class="ru.artemaa.stocks.entity.InvestIdea"
+                         view="_local">
             <query>
-                <![CDATA[select e from stocks$Stock e]]>
+                <![CDATA[select e from stocks$InvestIdea e]]>
             </query>
-        </collectionDatasource>
-        <collectionDatasource id="currenciesDs"
-                              class="ru.artemaa.stocks.entity.Currency"
-                              datasourceClass="ru.artemaa.stocks.web.currency.CurrencyDatasource">
-        </collectionDatasource>
+        </groupDatasource>
     </dsContext>
     <actions>
         <action id="save"
@@ -29,6 +30,7 @@
                 shortcut="CTRL-ENTER"/>
         <action id="cancel"
                 caption="mainMsg://actions.Cancel"
+                description="Esc"
                 icon="icons/cancel.png"
                 invoke="cancel"/>
     </actions>
@@ -41,55 +43,57 @@
                reversePosition="true"
                width="100%">
             <vbox id="lookupBox"
-                  expand="stocksTable"
+                  expand="table"
                   height="100%"
                   margin="false,true,false,false"
                   spacing="true">
                 <filter id="filter"
-                        applyTo="stocksTable"
-                        datasource="stocksDs">
+                        applyTo="table"
+                        datasource="investIdeasDs">
                     <properties include=".*"/>
                 </filter>
-                <table id="stocksTable"
-                       width="100%">
+                <groupTable id="table"
+                            width="100%">
                     <actions>
                         <action id="create"/>
                         <action id="edit"/>
                         <action id="remove"/>
                     </actions>
                     <columns>
+                        <column id="active"/>
                         <column id="name"/>
-                        <column id="code"/>
+                        <column id="endDate"/>
                     </columns>
-                    <rows datasource="stocksDs"/>
+                    <rows datasource="investIdeasDs"/>
                     <rowsCount/>
                     <buttonsPanel id="buttonsPanel"
                                   alwaysVisible="true">
                         <button id="createBtn"
-                                action="stocksTable.create"/>
+                                action="table.create"/>
                         <button id="editBtn"
-                                action="stocksTable.edit"/>
+                                action="table.edit"/>
                         <button id="removeBtn"
-                                action="stocksTable.remove"/>
+                                action="table.remove"/>
                     </buttonsPanel>
-                </table>
+                </groupTable>
             </vbox>
             <vbox id="editBox"
                   expand="fieldGroupBox"
                   height="100%"
                   margin="false,false,false,true"
                   spacing="true">
-                <vbox id="fieldGroupBox">
+                <scrollBox id="fieldGroupBox">
                     <fieldGroup id="fieldGroup"
-                                datasource="stockDs">
+                                datasource="investIdeaDs">
                         <column width="250px">
                             <field property="name"/>
-                            <field property="code"/>
-                            <field optionsDatasource="currenciesDs"
-                                   property="currency"/>
+                            <field property="endDate"/>
+                            <field property="description"
+                                   rows="5"/>
+                            <field property="active"/>
                         </column>
                     </fieldGroup>
-                </vbox>
+                </scrollBox>
                 <hbox id="actionsPane"
                       spacing="true"
                       visible="false">

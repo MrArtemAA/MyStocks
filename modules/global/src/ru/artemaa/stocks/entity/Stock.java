@@ -1,19 +1,18 @@
 package ru.artemaa.stocks.entity;
 
+import com.haulmont.chile.core.annotations.MetaProperty;
+import com.haulmont.chile.core.annotations.NamePattern;
+import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.CaseConversion;
+import com.haulmont.cuba.core.global.AppBeans;
+import org.hibernate.validator.constraints.Length;
+import ru.artemaa.stocks.service.CurrencyService;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Column;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-import com.haulmont.cuba.core.entity.StandardEntity;
-import org.hibernate.validator.constraints.Length;
-import com.haulmont.cuba.core.entity.annotation.Lookup;
-import com.haulmont.cuba.core.entity.annotation.LookupType;
-import com.haulmont.cuba.core.entity.annotation.OnDelete;
-import com.haulmont.cuba.core.global.DeletePolicy;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import com.haulmont.chile.core.annotations.NamePattern;
 
 @NamePattern("%s (%s)|name,code")
 @Table(name = "STOCKS_STOCK")
@@ -31,21 +30,34 @@ public class Stock extends StandardEntity {
     @Column(name = "CODE", nullable = false, unique = true, length = 20)
     protected String code;
 
-    @Lookup(type = LookupType.DROPDOWN, actions = {"lookup"})
-    @NotNull
-    @OnDelete(DeletePolicy.UNLINK)
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "CURRENCY_ID")
+    @Transient
+    @MetaProperty
     protected Currency currency;
+
+    @CaseConversion
+    @NotNull
+    @Column(name = "CURRENCY_CODE")
+    protected String currencyCode;
+
+    public void setCurrencyCode(String currencyCode) {
+        this.currencyCode = currencyCode;
+    }
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
 
     public void setCurrency(Currency currency) {
         this.currency = currency;
+        setCurrencyCode(currency.getCode());
     }
 
     public Currency getCurrency() {
+        if (currency == null && currencyCode != null) {
+            currency = AppBeans.get(CurrencyService.class).get(currencyCode);
+        }
         return currency;
     }
-
 
     public void setName(String name) {
         this.name = name;
