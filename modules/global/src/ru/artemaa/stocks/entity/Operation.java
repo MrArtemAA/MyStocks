@@ -29,8 +29,7 @@ public class Operation extends StandardEntity {
 
     @OnDeleteInverse(DeletePolicy.CASCADE)
     @OnDelete(DeletePolicy.UNLINK)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY)
     @Lookup(type = LookupType.DROPDOWN, actions = {"lookup", "open"})
     @JoinColumn(name = "STOCK_ID")
     protected Stock stock;

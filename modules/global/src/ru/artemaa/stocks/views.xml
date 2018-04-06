@@ -6,6 +6,8 @@
         <property fetch="AUTO"
                   name="currency"
                   view="_local"/>
+        <property name="industry"
+                  view="_minimal"/>
     </view>
     <view class="ru.artemaa.stocks.entity.Operation"
           extends="_local"

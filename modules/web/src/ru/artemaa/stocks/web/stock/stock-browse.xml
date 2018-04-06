@@ -9,13 +9,13 @@
         <datasource id="stockDs"
                     class="ru.artemaa.stocks.entity.Stock"
                     view="stock-edit-view"/>
-        <collectionDatasource id="stocksDs"
-                              class="ru.artemaa.stocks.entity.Stock"
-                              view="_local">
+        <groupDatasource id="stocksDs"
+                         class="ru.artemaa.stocks.entity.Stock"
+                         view="_local">
             <query>
                 <![CDATA[select e from stocks$Stock e]]>
             </query>
-        </collectionDatasource>
+        </groupDatasource>
         <collectionDatasource id="currenciesDs"
                               class="ru.artemaa.stocks.entity.Currency"
                               datasourceClass="ru.artemaa.stocks.web.currency.CurrencyDatasource">
@@ -50,7 +50,7 @@
                         datasource="stocksDs">
                     <properties include=".*"/>
                 </filter>
-                <table id="stocksTable"
+                <groupTable id="stocksTable"
                        width="100%">
                     <actions>
                         <action id="create"/>
@@ -58,6 +58,7 @@
                         <action id="remove"/>
                     </actions>
                     <columns>
+                        <column id="industry"/>
                         <column id="name"/>
                         <column id="code"/>
                     </columns>
@@ -72,7 +73,7 @@
                         <button id="removeBtn"
                                 action="stocksTable.remove"/>
                     </buttonsPanel>
-                </table>
+                </groupTable>
             </vbox>
             <vbox id="editBox"
                   expand="fieldGroupBox"
@@ -84,6 +85,7 @@
                                 datasource="stockDs">
                         <column width="250px">
                             <field property="name"/>
+                            <field property="industry"/>
                             <field property="code"/>
                             <field optionsDatasource="currenciesDs"
                                    property="currency"/>

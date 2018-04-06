@@ -8,5 +8,6 @@
         <class>ru.artemaa.stocks.entity.portfolio.Portfolio</class>
         <class>ru.artemaa.stocks.entity.portfolio.PortfolioIncome</class>
         <class>ru.artemaa.stocks.entity.InvestIdea</class>
+        <class>ru.artemaa.stocks.entity.Industry</class>
     </persistence-unit>
 </persistence>

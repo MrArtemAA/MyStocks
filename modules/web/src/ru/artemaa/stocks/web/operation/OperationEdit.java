@@ -13,7 +13,6 @@ import ru.artemaa.stocks.service.StockSummaryService;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.Map;
 
 import static ru.artemaa.stocks.entity.OperationType.Dividends;
 
@@ -29,8 +28,8 @@ public class OperationEdit extends AbstractEditor<Operation> {
     private TextField amount;
 
     @Override
-    public void init(Map<String, Object> params) {
-        super.init(params);
+    protected void postInit() {
+        super.postInit();
 
         if (PersistenceHelper.isNew(getItem())) {
             operationType.addValueChangeListener(e -> {

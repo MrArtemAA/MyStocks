@@ -8,10 +8,10 @@
         <item openType="DIALOG"
               screen="stocks$InvestIdea.browse"/>
         <item openType="DIALOG"
-              screen="stocks$Portfolio.browse"/>
-        <item openType="DIALOG"
               screen="stocks$Stock.browse"/>
         <item openType="DIALOG"
-              screen="stocks$Currency.browse"/>
+              screen="stocks$Industry.browse"/>
+        <item openType="DIALOG"
+              screen="stocks$Portfolio.browse"/>
     </menu>
 </menu-config>
