@@ -36,8 +36,8 @@
           </cuba-lookup> 
           <cuba-lookup picked-entity="{{entity.stock}}"> 
             <div slot="dropdown"> 
-              <cuba-entities entity-name="stocks$Stock" view="_minimal" data="{{entity_stockOptions}}"></cuba-entities> 
-              <vaadin-combo-box label="[[msg('stocks$Operation.stock')]]" items="[[entity_stockOptions]]" selected-item="{{entity.stock}}" item-label-path="_instanceName" item-value-path="id" value="[[entity.stock.id]]" required error-message="[[serverErrors.stock]]" invalid="[[_isInvalid(serverErrors.stock)]]"> 
+              <cuba-entities entity-name="stocks$Stock" view="_local" data="{{entity_stockOptions}}"></cuba-entities> 
+              <vaadin-combo-box label="[[msg('stocks$Operation.stock')]]" items="[[entity_stockOptions]]" selected-item="{{entity.stock}}" item-label-path="_instanceName" item-value-path="id" value="[[entity.stock.id]]" error-message="[[serverErrors.stock]]" invalid="[[_isInvalid(serverErrors.stock)]]"> 
               </vaadin-combo-box> 
             </div> 
           </cuba-lookup> 

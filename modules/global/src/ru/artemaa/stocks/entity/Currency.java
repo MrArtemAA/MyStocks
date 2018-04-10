@@ -11,6 +11,9 @@ public class Currency extends BaseStringIdEntity {
     private static final long serialVersionUID = -5687224572426293983L;
 
     @MetaProperty
+    protected String id;
+
+    @MetaProperty
     protected String name;
 
     @MetaProperty
@@ -26,12 +29,12 @@ public class Currency extends BaseStringIdEntity {
 
     public void setCode(String code) {
         this.code = code;
+        id = code;
     }
 
     public String getCode() {
         return code;
     }
-
 
     @Override
     public String getId() {

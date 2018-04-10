@@ -22,7 +22,7 @@
 <link rel="import" href="stocks-user-menu.html"> 
 <link rel="import" href="stocks-login.html"> 
 <link rel="import" href="home/stocks-home.html"> 
-<link rel="import" href="stocks-operation/stocks-operation-edit.html">
+<link rel="import" href="stocks-operation/stocks-operation-management.html">
 <dom-module id="stocks-shell"> 
   <template> 
     <style include="shared-styles">
@@ -68,7 +68,7 @@
         <app-drawer id="drawer" slot="drawer"> 
           <app-toolbar> 
             <div class="title">
-              [[msg('Stocks')]]
+               [[msg('Stocks')]] 
             </div> 
           </app-toolbar> 
           <div class="content fit drawer-content"> 
@@ -85,7 +85,7 @@
           </app-header> 
           <iron-lazy-pages selected="[[_computeSelectedPage(routeData.page)]]" attr-for-selected="data-route" selected-attribute="active" class="content fit"> 
             <stocks-home data-route=""></stocks-home> 
-            <stocks-operation-edit route="[[routeTail]]" data-route="stocks-operation-edit"></stocks-operation-edit> 
+            <stocks-operation-management route="[[routeTail]]" data-route="stocks-operation-management"></stocks-operation-management> 
           </iron-lazy-pages> 
         </app-header-layout> 
       </app-drawer-layout> 

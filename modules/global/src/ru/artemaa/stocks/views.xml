@@ -13,7 +13,8 @@
           extends="_local"
           name="operation-with-stock-view">
         <property name="stock"
-                  view="_minimal"/>
+                  view="_local">
+        </property>
         <property name="portfolio"
                   view="_minimal"/>
     </view>
