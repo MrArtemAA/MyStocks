@@ -1,2 +1,0 @@
-alter table STOCKS_STOCK add constraint FK_STOCKS_STOCK_INDUSTRY foreign key (INDUSTRY_ID) references STOCKS_INDUSTRY(ID);
-create index IDX_STOCKS_STOCK_INDUSTRY on STOCKS_STOCK (INDUSTRY_ID);

@@ -49,4 +49,14 @@
             <property name="code"/>
         </property>
     </view>
+    <view class="ru.artemaa.stocks.entity.operation.SimpleAccountOperation"
+          extends="_local"
+          name="simpleAccountOperation-detailed-view">
+        <property name="account"
+                  view="_minimal">
+            <property name="currencyCode"/>
+        </property>
+        <property name="category"
+                  view="_minimal"/>
+    </view>
 </views>
