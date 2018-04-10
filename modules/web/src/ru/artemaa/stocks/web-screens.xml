@@ -27,4 +27,6 @@
             template="ru/artemaa/stocks/web/account/account-browse.xml"/>
     <screen id="stocks$Account.edit"
             template="ru/artemaa/stocks/web/account/account-edit.xml"/>
+    <screen id="stocks$PaymentCategory.browse"
+            template="ru/artemaa/stocks/web/paymentcategory/payment-category-browse.xml"/>
 </screen-config>

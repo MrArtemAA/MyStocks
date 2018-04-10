@@ -11,5 +11,9 @@
         <class>ru.artemaa.stocks.entity.Industry</class>
         <class>ru.artemaa.stocks.entity.Account</class>
         <class>ru.artemaa.stocks.entity.AccountType</class>
+        <class>ru.artemaa.stocks.entity.operation.AccountOperation</class>
+        <class>ru.artemaa.stocks.entity.PaymentCategory</class>
+        <class>ru.artemaa.stocks.entity.operation.SimpleAccountOperation</class>
+        <class>ru.artemaa.stocks.entity.operation.Transfer</class>
     </persistence-unit>
 </persistence>

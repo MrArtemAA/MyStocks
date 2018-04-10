@@ -15,7 +15,10 @@
               screen="stocks$Industry.browse"/>
         <item openType="DIALOG"
               screen="stocks$Portfolio.browse"/>
+        <separator/>
         <item openType="DIALOG"
               screen="stocks$AccountType.browse"/>
+        <item openType="DIALOG"
+              screen="stocks$PaymentCategory.browse"/>
     </menu>
 </menu-config>

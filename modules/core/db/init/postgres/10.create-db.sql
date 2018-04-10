@@ -144,3 +144,63 @@ create table STOCKS_ACCOUNT_TYPE (
     primary key (ID)
 )^
 -- end STOCKS_ACCOUNT_TYPE
+-- begin STOCKS_ACCOUNT_OPERATION
+create table STOCKS_ACCOUNT_OPERATION (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    DTYPE varchar(31),
+    --
+    TYPE_ varchar(50) not null,
+    DATE_ date not null,
+    SUM_ decimal(19, 2),
+    COMMENT_ text,
+    --
+    -- from stocks$SimpleAccountOperation
+    ACCOUNT_ID uuid,
+    CATEGORY_ID uuid,
+    --
+    primary key (ID)
+)^
+-- end STOCKS_ACCOUNT_OPERATION
+-- begin STOCKS_PAYMENT_CATEGORY
+create table STOCKS_PAYMENT_CATEGORY (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    TYPE_ varchar(50),
+    NAME varchar(255) not null,
+    ACTIVE boolean,
+    --
+    primary key (ID)
+)^
+-- end STOCKS_PAYMENT_CATEGORY
+-- begin STOCKS_TRANSFER
+create table STOCKS_TRANSFER (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    SOURCE_ACCOUNT_ID uuid,
+    DEST_ACCOUNT_ID uuid,
+    RATE decimal(19, 2),
+    --
+    primary key (ID)
+)^
+-- end STOCKS_TRANSFER
