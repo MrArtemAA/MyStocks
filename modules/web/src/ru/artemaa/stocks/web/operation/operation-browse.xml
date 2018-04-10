@@ -8,7 +8,7 @@
     <dsContext>
         <groupDatasource id="operationsDs"
                          class="ru.artemaa.stocks.entity.Operation"
-                         view="operation-browse-view">
+                         view="operation-detailed-view">
             <query>
                 <![CDATA[select e from stocks$Operation e order by e.date desc]]>
             </query>

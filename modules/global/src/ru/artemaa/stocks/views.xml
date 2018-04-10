@@ -11,7 +11,7 @@
     </view>
     <view class="ru.artemaa.stocks.entity.Operation"
           extends="_local"
-          name="operation-with-stock-view">
+          name="operation-detailed-view">
         <property name="stock"
                   view="_local">
         </property>
@@ -38,22 +38,6 @@
           extends="_local"
           name="portfolio-browse-view">
         <property name="name"/>
-    </view>
-    <view class="ru.artemaa.stocks.entity.Operation"
-          extends="_local"
-          name="operation-browse-view">
-        <property name="portfolio"
-                  view="_minimal">
-            <property name="name"/>
-        </property>
-        <property name="stock"
-                  view="_minimal">
-            <property name="name"/>
-        </property>
-        <property name="type"/>
-        <property name="date"/>
-        <property name="price"/>
-        <property name="amount"/>
     </view>
     <view class="ru.artemaa.stocks.entity.Account"
           extends="_local"

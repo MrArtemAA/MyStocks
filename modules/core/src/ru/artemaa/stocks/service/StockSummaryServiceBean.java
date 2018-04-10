@@ -2,16 +2,16 @@ package ru.artemaa.stocks.service;
 
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.LoadContext;
+import com.haulmont.cuba.core.global.Metadata;
 import org.slf4j.Logger;
 import org.springframework.stereotype.Service;
 import ru.artemaa.stocks.entity.Operation;
 import ru.artemaa.stocks.entity.Stock;
 import ru.artemaa.stocks.entity.StockSummary;
+import ru.artemaa.stocks.entity.portfolio.Portfolio;
 
 import javax.inject.Inject;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
@@ -23,9 +23,11 @@ public class StockSummaryServiceBean implements StockSummaryService {
 
     @Inject
     private DataManager dataManager;
+    @Inject
+    private Metadata metadata;
 
     @Override
-    public StockSummary getStockSummary(final UUID stockId) {
+    public List<StockSummary> getStockSummary(final UUID stockId) {
         Stock stock = dataManager.load(LoadContext.create(Stock.class).setId(stockId));
         return getStockSummary(stock);
     }
@@ -40,56 +42,72 @@ public class StockSummaryServiceBean implements StockSummaryService {
         );
 
         return stocks.stream()
-                .map(this::getStockSummary)
+                .flatMap(stock -> getStockSummary(stock).stream())
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
-    private StockSummary getStockSummary(final Stock stock) {
-        LoadContext.Query query = LoadContext.createQuery("select o from stocks$Operation o where " +
-                "o.stock.id = :stockId")
-                .setParameter("stockId", stock.getId());
+    private List<StockSummary> getStockSummary(final Stock stock) {
+        List<Operation> operations = getOperations(stock);
+        if (operations.isEmpty()) {
+            return new ArrayList<>();
+        }
 
-        List<Operation> operations = dataManager.loadList(
-                LoadContext.create(Operation.class)
-                        .setQuery(query)
-        );
+        Map<Portfolio, List<Operation>> operationsByPortfolio = operations.stream()
+                .collect(Collectors.groupingBy(Operation::getPortfolio, Collectors.toList()));
 
-        StockSummary summary = new StockSummary();
-        if (operations.isEmpty()) return summary;
+        return operationsByPortfolio.entrySet().stream()
+                .map(portfolioListEntry -> getPortfolioSummary(portfolioListEntry.getKey(), stock, portfolioListEntry.getValue()))
+                .collect(Collectors.toList());
+    }
+
+    private StockSummary getPortfolioSummary(Portfolio portfolio, Stock stock, List<Operation> operations) {
+        StockSummary stockSummary = metadata.create(StockSummary.class);
+
+        stockSummary.setPortfolio(portfolio);
+        stockSummary.setStock(stock);
 
         AtomicInteger totalDividendsAmount = new AtomicInteger(0);
         AtomicInteger totalPurchasedAmount = new AtomicInteger(0);
         AtomicInteger totalSoldAmount = new AtomicInteger(0);
 
-        summary.setStock(stock);
-
         operations.forEach(operation -> {
-            Objects.requireNonNull(summary);
             LOG.info(operation.toString());
             switch (operation.getType()) {
                 case Purchase:
-                    summary.setAmount(summary.getAmount() + operation.getAmount());
+                    stockSummary.setAmount(stockSummary.getAmount() + operation.getAmount());
                     totalPurchasedAmount.addAndGet(operation.getAmount());
-                    summary.setTotalPurchasePrice(summary.getTotalPurchasePrice() + operation.getPrice());
+                    stockSummary.setTotalPurchasePrice(stockSummary.getTotalPurchasePrice() + operation.getPrice());
                     break;
                 case Sale:
-                    summary.setAmount(summary.getAmount() - operation.getAmount());
+                    stockSummary.setAmount(stockSummary.getAmount() - operation.getAmount());
                     totalSoldAmount.addAndGet(operation.getAmount());
-                    summary.setTotalSellPrice(summary.getTotalSellPrice() + operation.getPrice());
+                    stockSummary.setTotalSellPrice(stockSummary.getTotalSellPrice() + operation.getPrice());
                     break;
                 case Dividends:
-                    summary.setTotalDividends(summary.getTotalDividends() + operation.getPrice());
+                    stockSummary.setTotalDividends(stockSummary.getTotalDividends() + operation.getPrice());
                     totalDividendsAmount.getAndAdd(operation.getAmount());
                     break;
             }
         });
 
-        summary.setAvgPurchasePrice(summary.getTotalPurchasePrice() / totalPurchasedAmount.get());
-        summary.setAvgSellPrice(summary.getTotalSellPrice() / totalSoldAmount.get());
-        summary.setAvgDividends(summary.getTotalDividends() / totalDividendsAmount.get());
-        summary.setPriceDividendsRatio(summary.getAvgDividends() / summary.getAvgPurchasePrice() * 100);
+        stockSummary.setAvgPurchasePrice(stockSummary.getTotalPurchasePrice() / totalPurchasedAmount.get());
+        stockSummary.setAvgSellPrice(stockSummary.getTotalSellPrice() / totalSoldAmount.get());
+        stockSummary.setAvgDividends(stockSummary.getTotalDividends() / totalDividendsAmount.get());
+        stockSummary.setPriceDividendsRatio(stockSummary.getAvgDividends() / stockSummary.getAvgPurchasePrice() * 100);
 
-        return summary;
+        return stockSummary;
+    }
+
+    private List<Operation> getOperations(Stock stock) {
+        LoadContext.Query query = LoadContext.createQuery("select o from stocks$Operation o where " +
+                "o.stock.id = :stockId")
+                .setParameter("stockId", stock.getId());
+
+        return dataManager.loadList(
+                LoadContext.create(Operation.class)
+                        .setQuery(query)
+                        .setView("operation-detailed-view")
+        );
     }
 }

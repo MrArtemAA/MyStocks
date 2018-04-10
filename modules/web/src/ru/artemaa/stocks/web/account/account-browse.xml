@@ -34,7 +34,7 @@
                 <group>
                     <column id="accountType"/>
                 </group>
-                <column id="considerInBalance" width="10px" caption=""/>
+                <column id="considerInBalance" caption="  "/>
                 <column id="name"/>
                 <column id="amount"/>
                 <column id="currency"/>

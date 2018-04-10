@@ -3,10 +3,14 @@ package ru.artemaa.stocks.entity;
 import com.haulmont.chile.core.annotations.MetaClass;
 import com.haulmont.chile.core.annotations.MetaProperty;
 import com.haulmont.cuba.core.entity.BaseUuidEntity;
+import ru.artemaa.stocks.entity.portfolio.Portfolio;
 
 @MetaClass(name = "stocks$StockSummary")
 public class StockSummary extends BaseUuidEntity {
     private static final long serialVersionUID = 5580946325692918983L;
+
+    @MetaProperty
+    protected Portfolio portfolio;
 
     @MetaProperty(mandatory = true)
     protected Stock stock;
@@ -34,6 +38,15 @@ public class StockSummary extends BaseUuidEntity {
 
     @MetaProperty
     protected Double priceDividendsRatio = 0.0;
+
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
+    }
+
+    public Portfolio getPortfolio() {
+        return portfolio;
+    }
+
 
     public void setAvgPurchasePrice(Double avgPurchasePrice) {
         this.avgPurchasePrice = avgPurchasePrice;

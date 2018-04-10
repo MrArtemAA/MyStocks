@@ -6,13 +6,9 @@
         lookupComponent="stockSummariesTable"
         messagesPack="ru.artemaa.stocks.web.stocksummary">
     <dsContext>
-        <collectionDatasource id="stockSummariesDs"
-                              class="ru.artemaa.stocks.entity.StockSummary"
-                              datasourceClass="ru.artemaa.stocks.web.stocksummary.StockSummaryDatasource">
-            <query>
-                <![CDATA[select e from stocks$StockSummary e]]>
-            </query>
-        </collectionDatasource>
+        <groupDatasource id="stockSummariesDs"
+                         class="ru.artemaa.stocks.entity.StockSummary"
+                         datasourceClass="ru.artemaa.stocks.web.stocksummary.StockSummaryDatasource"/>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
@@ -23,13 +19,16 @@
                 datasource="stockSummariesDs">
             <properties include=".*"/>
         </filter>
-        <table id="stockSummariesTable"
-               width="100%">
+        <groupTable id="stockSummariesTable"
+                    width="100%">
             <actions>
                 <action id="refresh"/>
             </actions>
             <columns>
-                <column id="stock"/>
+                <group>
+                    <column id="stock"/>
+                    <column id="portfolio"/>
+                </group>
                 <column id="amount"/>
                 <column id="totalPurchasePrice"/>
                 <column id="avgPurchasePrice"/>
@@ -47,6 +46,6 @@
                         action="stockSummariesTable.refresh"
                         icon="icons/refresh.png"/>
             </buttonsPanel>
-        </table>
+        </groupTable>
     </layout>
 </window>

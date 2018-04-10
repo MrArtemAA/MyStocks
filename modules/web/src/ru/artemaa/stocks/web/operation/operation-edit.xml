@@ -8,7 +8,7 @@
     <dsContext>
         <datasource id="operationDs"
                     class="ru.artemaa.stocks.entity.Operation"
-                    view="operation-with-stock-view"/>
+                    view="operation-detailed-view"/>
         <collectionDatasource id="stocksDs"
                               class="ru.artemaa.stocks.entity.Stock"
                               view="_minimal">

@@ -9,7 +9,7 @@ import java.util.UUID;
 public interface StockSummaryService {
     String NAME = "stocks_StockSummaryService";
 
-    StockSummary getStockSummary(UUID stockId);
+    List<StockSummary> getStockSummary(UUID stockId);
     List<StockSummary> getStockSummaries();
 
 }
