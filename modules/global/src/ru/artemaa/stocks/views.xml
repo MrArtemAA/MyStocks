@@ -55,4 +55,14 @@
         <property name="price"/>
         <property name="amount"/>
     </view>
+    <view class="ru.artemaa.stocks.entity.Account"
+          extends="_local"
+          name="account-detailed-view">
+        <property name="accountType"
+                  view="_minimal"/>
+        <property name="currency"
+                  view="_minimal">
+            <property name="code"/>
+        </property>
+    </view>
 </views>

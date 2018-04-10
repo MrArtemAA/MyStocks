@@ -5,7 +5,7 @@ import com.haulmont.chile.core.annotations.MetaProperty;
 import com.haulmont.chile.core.annotations.NamePattern;
 import com.haulmont.cuba.core.entity.BaseStringIdEntity;
 
-@NamePattern("%s|name")
+@NamePattern("%s (%s)|name,code")
 @MetaClass(name = "stocks$Currency")
 public class Currency extends BaseStringIdEntity {
     private static final long serialVersionUID = -5687224572426293983L;

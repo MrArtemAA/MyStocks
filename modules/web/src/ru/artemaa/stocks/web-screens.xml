@@ -21,4 +21,10 @@
             template="ru/artemaa/stocks/web/investidea/invest-idea-browse.xml"/>
     <screen id="stocks$Industry.browse"
             template="ru/artemaa/stocks/web/industry/industry-browse.xml"/>
+    <screen id="stocks$AccountType.browse"
+            template="ru/artemaa/stocks/web/accounttype/account-type-browse.xml"/>
+    <screen id="stocks$Account.browse"
+            template="ru/artemaa/stocks/web/account/account-browse.xml"/>
+    <screen id="stocks$Account.edit"
+            template="ru/artemaa/stocks/web/account/account-edit.xml"/>
 </screen-config>
