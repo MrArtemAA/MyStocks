@@ -32,6 +32,13 @@
                 <field property="date"/>
                 <field property="sum"/>
                 <field property="rate"/>
+            </column>
+        </fieldGroup>
+        <fieldGroup>
+            <column>
+                <field>
+                    <textField id="destSum"/>
+                </field>
                 <field property="comment"
                        rows="5"/>
             </column>
