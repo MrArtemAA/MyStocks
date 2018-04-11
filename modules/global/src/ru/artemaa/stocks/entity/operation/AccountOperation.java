@@ -1,12 +1,15 @@
 package ru.artemaa.stocks.entity.operation;
 
 import com.haulmont.cuba.core.entity.StandardEntity;
+import com.haulmont.cuba.core.entity.annotation.Listeners;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Listeners("stocks_AccountOperationListener")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "DTYPE", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "STOCKS_ACCOUNT_OPERATION")
@@ -21,8 +24,9 @@ public class AccountOperation extends StandardEntity {
     @Temporal(TemporalType.DATE)
     @NotNull
     @Column(name = "DATE_", nullable = false)
-    protected Date date;
+    protected Date date = new Date();
 
+    @DecimalMin("0")
     @NotNull
     @Column(name = "SUM_")
     protected BigDecimal sum;

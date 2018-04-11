@@ -8,18 +8,24 @@
     <dsContext>
         <datasource id="stockDs"
                     class="ru.artemaa.stocks.entity.Stock"
-                    view="stock-edit-view"/>
+                    view="stock-detailed-view"/>
         <groupDatasource id="stocksDs"
                          class="ru.artemaa.stocks.entity.Stock"
-                         view="_local">
+                         view="stock-detailed-view">
             <query>
-                <![CDATA[select e from stocks$Stock e]]>
+                <![CDATA[select e from stocks$Stock e order by e.name]]>
             </query>
         </groupDatasource>
+        <collectionDatasource id="industriesDs"
+                              class="ru.artemaa.stocks.entity.Industry"
+                              view="_local">
+            <query>
+                <![CDATA[select e from stocks$Industry e order by e.name]]>
+            </query>
+        </collectionDatasource>
         <collectionDatasource id="currenciesDs"
                               class="ru.artemaa.stocks.entity.Currency"
-                              datasourceClass="ru.artemaa.stocks.web.currency.CurrencyDatasource">
-        </collectionDatasource>
+                              datasourceClass="ru.artemaa.stocks.web.currency.CurrencyDatasource"/>
     </dsContext>
     <actions>
         <action id="save"
@@ -51,7 +57,7 @@
                     <properties include=".*"/>
                 </filter>
                 <groupTable id="stocksTable"
-                       width="100%">
+                            width="100%">
                     <actions>
                         <action id="create"/>
                         <action id="edit"/>
@@ -85,10 +91,12 @@
                                 datasource="stockDs">
                         <column width="250px">
                             <field property="name"/>
-                            <field property="industry"/>
+                            <field property="industry"
+                                   optionsDatasource="industriesDs"/>
                             <field property="code"/>
                             <field optionsDatasource="currenciesDs"
-                                   property="currency"/>
+                                   property="currency"
+                                   required="true"/>
                         </column>
                     </fieldGroup>
                 </vbox>

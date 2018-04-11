@@ -26,6 +26,7 @@ public class SimpleAccountOperation extends AccountOperation {
     @JoinColumn(name = "ACCOUNT_ID")
     protected Account account;
 
+    @NotNull
     @Lookup(type = LookupType.DROPDOWN, actions = {"lookup"})
     @OnDeleteInverse(DeletePolicy.DENY)
     @OnDelete(DeletePolicy.UNLINK)

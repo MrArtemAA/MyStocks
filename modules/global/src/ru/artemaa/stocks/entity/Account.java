@@ -15,7 +15,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@NamePattern("%s (%s)|name, currencyCode")
+@NamePattern("%s|name")
 @Table(name = "STOCKS_ACCOUNT")
 @Entity(name = "stocks$Account")
 public class Account extends StandardEntity {

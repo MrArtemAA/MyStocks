@@ -165,6 +165,11 @@ create table STOCKS_ACCOUNT_OPERATION (
     ACCOUNT_ID uuid,
     CATEGORY_ID uuid,
     --
+    -- from stocks$Transfer
+    SOURCE_ACCOUNT_ID uuid,
+    DEST_ACCOUNT_ID uuid,
+    RATE decimal(19, 2),
+    --
     primary key (ID)
 )^
 -- end STOCKS_ACCOUNT_OPERATION
@@ -186,21 +191,3 @@ create table STOCKS_PAYMENT_CATEGORY (
     primary key (ID)
 )^
 -- end STOCKS_PAYMENT_CATEGORY
--- begin STOCKS_TRANSFER
-create table STOCKS_TRANSFER (
-    ID uuid,
-    VERSION integer not null,
-    CREATE_TS timestamp,
-    CREATED_BY varchar(50),
-    UPDATE_TS timestamp,
-    UPDATED_BY varchar(50),
-    DELETE_TS timestamp,
-    DELETED_BY varchar(50),
-    --
-    SOURCE_ACCOUNT_ID uuid,
-    DEST_ACCOUNT_ID uuid,
-    RATE decimal(19, 2),
-    --
-    primary key (ID)
-)^
--- end STOCKS_TRANSFER

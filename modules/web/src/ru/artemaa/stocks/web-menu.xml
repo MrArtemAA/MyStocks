@@ -3,6 +3,8 @@
     <item insertBefore="administration"
           screen="stocks$Account.browse"/>
     <item insertBefore="administration"
+          screen="stocks$AccountOperation.browse"/>
+    <item insertBefore="administration"
           openType="NEW_TAB"
           screen="stocks$Operation.browse"/>
     <menu id="references"

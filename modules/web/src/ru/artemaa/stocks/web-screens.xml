@@ -33,4 +33,6 @@
             template="ru/artemaa/stocks/web/simpleaccountoperation/simple-account-operation-edit.xml"/>
     <screen id="stocks$AccountOperation.browse"
             template="ru/artemaa/stocks/web/accountoperation/account-operation-browse.xml"/>
+    <screen id="stocks$Transfer.edit"
+            template="ru/artemaa/stocks/web/transfer/transfer-edit.xml"/>
 </screen-config>

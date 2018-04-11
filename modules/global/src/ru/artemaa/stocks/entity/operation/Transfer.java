@@ -1,6 +1,5 @@
 package ru.artemaa.stocks.entity.operation;
 
-import com.haulmont.cuba.core.entity.StandardEntity;
 import com.haulmont.cuba.core.entity.annotation.Lookup;
 import com.haulmont.cuba.core.entity.annotation.LookupType;
 import com.haulmont.cuba.core.entity.annotation.OnDelete;
@@ -12,9 +11,8 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
-@Table(name = "STOCKS_TRANSFER")
 @Entity(name = "stocks$Transfer")
-public class Transfer extends StandardEntity {
+public class Transfer extends AccountOperation {
     private static final long serialVersionUID = -3593893726690976711L;
 
     @Lookup(type = LookupType.DROPDOWN, actions = {"lookup", "open"})

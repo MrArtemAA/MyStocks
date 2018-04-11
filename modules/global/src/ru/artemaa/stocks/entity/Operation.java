@@ -27,6 +27,7 @@ public class Operation extends StandardEntity {
     @JoinColumn(name = "PORTFOLIO_ID")
     protected Portfolio portfolio;
 
+    @NotNull
     @OnDeleteInverse(DeletePolicy.CASCADE)
     @OnDelete(DeletePolicy.UNLINK)
     @ManyToOne(fetch = FetchType.LAZY)

@@ -40,6 +40,8 @@
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
                 <button id="createIncomeBtn"/>
+                <button id="createExpenseBtn"/>
+                <button id="createTransferBtn"/>
                 <button id="editBtn"
                         action="accountOperationsTable.edit"/>
                 <button id="removeBtn"

@@ -2,7 +2,7 @@
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
     <view class="ru.artemaa.stocks.entity.Stock"
           extends="_local"
-          name="stock-edit-view">
+          name="stock-detailed-view">
         <property fetch="AUTO"
                   name="currency"
                   view="_local"/>
@@ -57,6 +57,14 @@
             <property name="currencyCode"/>
         </property>
         <property name="category"
+                  view="_minimal"/>
+    </view>
+    <view class="ru.artemaa.stocks.entity.operation.Transfer"
+          extends="_local"
+          name="transfer-detailed-view">
+        <property name="sourceAccount"
+                  view="_minimal"/>
+        <property name="destAccount"
                   view="_minimal"/>
     </view>
 </views>
