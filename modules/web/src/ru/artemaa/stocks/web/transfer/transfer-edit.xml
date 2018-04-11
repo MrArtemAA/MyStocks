@@ -32,6 +32,13 @@
                 <field property="date"/>
                 <field property="sum"/>
                 <field property="rate"/>
+            </column>
+        </fieldGroup>
+        <textField id="destSum"
+                   caption="Сумма после конвертации"
+                   editable="false"/>
+        <fieldGroup datasource="transferDs">
+            <column>
                 <field property="comment"
                        rows="5"/>
             </column>

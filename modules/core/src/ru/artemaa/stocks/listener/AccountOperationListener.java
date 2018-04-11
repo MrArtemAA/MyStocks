@@ -58,7 +58,7 @@ public class AccountOperationListener implements
         /*BigDecimal sourceAccountAmount = sourceAccount.getAmount();
         BigDecimal destAccountAmount = destAccount.getAmount();*/
         sourceAccount.setAmount(sourceAccount.getAmount().add(transfer.getSum()));
-        destAccount.setAmount(destAccount.getAmount().subtract(transfer.getSum()));
+        destAccount.setAmount(destAccount.getAmount().subtract(transfer.getSum().multiply(transfer.getRate())));
         entityManager.persist(sourceAccount);
         entityManager.persist(destAccount);
     }
@@ -96,7 +96,8 @@ public class AccountOperationListener implements
         /*BigDecimal sourceAccountAmount = sourceAccount.getAmount();
         BigDecimal destAccountAmount = destAccount.getAmount();*/
         sourceAccount.setAmount(sourceAccount.getAmount().subtract(transfer.getSum()));
-        destAccount.setAmount(destAccount.getAmount().add(transfer.getSum()));
+        destAccount.setAmount(destAccount.getAmount()
+                .add(transfer.getSum().multiply(transfer.getRate())));
         entityManager.persist(sourceAccount);
         entityManager.persist(destAccount);
     }
@@ -116,7 +117,7 @@ public class AccountOperationListener implements
     private void updateSimpleOperation(SimpleAccountOperation operation, EntityManager entityManager) {
         Account account = entityManager.find(Account.class, operation.getAccount().getId());
         BigDecimal accountAmount = account.getAmount();
-        AccountOperation oldOperation = getOldOperation(operation.getId());
+        SimpleAccountOperation oldOperation = getOldOperation(operation.getId(), SimpleAccountOperation.class);
         switch (operation.getType()) {
             case INCOME:
                 accountAmount = accountAmount.subtract(oldOperation.getSum()).add(operation.getSum());
@@ -132,20 +133,24 @@ public class AccountOperationListener implements
     private void updateTransfer(Transfer transfer, EntityManager entityManager) {
         Account sourceAccount = entityManager.find(Account.class, transfer.getSourceAccount().getId());
         Account destAccount = entityManager.find(Account.class, transfer.getDestAccount().getId());
-        AccountOperation oldOperation = getOldOperation(transfer.getId());
+        Transfer oldOperation = getOldOperation(transfer.getId(), Transfer.class);
         /*BigDecimal sourceAccountAmount = sourceAccount.getAmount();
         BigDecimal destAccountAmount = destAccount.getAmount();*/
-        sourceAccount.setAmount(sourceAccount.getAmount().add(oldOperation.getSum()).subtract(transfer.getSum()));
-        destAccount.setAmount(destAccount.getAmount().subtract(oldOperation.getSum()).add(transfer.getSum()));
+        sourceAccount.setAmount(sourceAccount.getAmount()
+                .add(oldOperation.getSum())
+                .subtract(transfer.getSum()));
+        destAccount.setAmount(destAccount.getAmount()
+                .subtract(oldOperation.getSum().multiply(oldOperation.getRate()))
+                .add(transfer.getSum().multiply(transfer.getRate())));
         entityManager.persist(sourceAccount);
         entityManager.persist(destAccount);
     }
 
-    private AccountOperation getOldOperation(UUID id) {
-        AccountOperation operation;
+    private <T extends AccountOperation> T getOldOperation(UUID id, Class<T> operationClass) {
+        T operation;
         try (Transaction transaction = persistence.createTransaction()) {
             EntityManager entityManager = persistence.getEntityManager();
-            operation = entityManager.find(AccountOperation.class, id);
+            operation = entityManager.find(operationClass, id);
             transaction.commit();
         }
         return operation;

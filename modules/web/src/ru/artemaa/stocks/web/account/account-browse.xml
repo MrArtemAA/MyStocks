@@ -29,6 +29,7 @@
                 <action id="create"/>
                 <action id="edit"/>
                 <action id="remove"/>
+                <action id="refresh"/>
             </actions>
             <columns>
                 <group>
@@ -49,6 +50,8 @@
                         action="accountsTable.edit"/>
                 <button id="removeBtn"
                         action="accountsTable.remove"/>
+                <button id="refreshBtn"
+                        action="accountsTable.refresh"/>
             </buttonsPanel>
         </groupTable>
     </layout>
