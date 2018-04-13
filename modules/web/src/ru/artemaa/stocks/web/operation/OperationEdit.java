@@ -13,6 +13,7 @@ import ru.artemaa.stocks.service.StockSummaryService;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import static java.util.Objects.nonNull;
 import static ru.artemaa.stocks.entity.OperationType.Dividends;
 
 public class OperationEdit extends AbstractEditor<Operation> {
@@ -27,23 +28,48 @@ public class OperationEdit extends AbstractEditor<Operation> {
     private LookupField operationType;
     @Named("fieldGroup.amount")
     private TextField amount;
+    @Named("fieldGroup.price")
+    private TextField price;
+    @Inject
+    private TextField pricePerOne;
 
     @Override
     protected void postInit() {
         super.postInit();
 
+        updatePricePerOne(price.getValue(), amount.getValue());
+
         if (PersistenceHelper.isNew(getItem())) {
             operationType.addValueChangeListener(e -> {
-                OperationType value = (OperationType) e.getValue();
-                Object portfolio = portfolioPicker.getValue();
-                Stock stock = stockPicker.getValue();
-                if (portfolio != null && stock != null && value == Dividends) {
-                    stockSummaryService.getStockSummary(stock.getId()).stream()
-                            .filter(stockSummary -> portfolio.equals(stockSummary.getPortfolio()))
-                            .findFirst()
-                            .ifPresent(stockSummary -> amount.setValue(stockSummary.getAmount()));
+                OperationType type = (OperationType) e.getValue();
+                if (isPortfolioAndStockSet() && type == Dividends) {
+                    updateAmountForDividends();
                 }
             });
+        }
+
+        amount.addValueChangeListener(e -> updatePricePerOne(price.getValue(), (Integer) e.getValue()));
+        price.addValueChangeListener(e -> updatePricePerOne((Double) e.getValue(), amount.getValue()));
+    }
+
+    private boolean isPortfolioAndStockSet() {
+        Object portfolio = portfolioPicker.getValue();
+        Stock stock = stockPicker.getValue();
+        return nonNull(portfolio) &&  nonNull(stock);
+    }
+
+    private void updateAmountForDividends() {
+        Object portfolio = portfolioPicker.getValue();
+        Stock stock = stockPicker.getValue();
+        stockSummaryService.getStockSummary(stock.getId()).stream()
+                .filter(stockSummary -> portfolio.equals(stockSummary.getPortfolio()))
+                .findFirst()
+                .ifPresent(stockSummary -> amount.setValue(stockSummary.getAmount()));
+    }
+
+    private void updatePricePerOne(Double price, Integer amount) {
+        if (nonNull(price) && nonNull(amount)) {
+            pricePerOne.setValue(price / amount);
         }
     }
 }

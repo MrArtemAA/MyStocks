@@ -38,6 +38,9 @@
                 <field property="amount"/>
             </column>
         </fieldGroup>
+        <textField id="pricePerOne"
+                   caption="msg://pricePerOne"
+                   editable="false"/>
         <frame id="windowActions"
                screen="editWindowActions"/>
     </layout>
