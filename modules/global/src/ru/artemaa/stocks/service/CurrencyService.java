@@ -9,4 +9,5 @@ public interface CurrencyService {
     String NAME = "stocks_CurrencyService";
     Collection<Currency> getAll();
     Currency get(String code);
+    Currency getMain();
 }

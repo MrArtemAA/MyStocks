@@ -38,4 +38,9 @@ public class CurrencyServiceBean implements CurrencyService {
         currency.setName(javaCurrency.getDisplayName(Locale.getDefault()));
         return currency;
     }
+
+    @Override
+    public Currency getMain() {
+        return get(stocksConfig.getMainCurrencyCode());
+    }
 }

@@ -16,4 +16,7 @@ public interface StocksConfig extends Config {
 
     @Property("stocks.currency.codes")
     String getCurrencyCodes();
+
+    @Property("stocks.currency.main")
+    String getMainCurrencyCode();
 }
