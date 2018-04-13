@@ -34,8 +34,8 @@
                 <field property="rate"/>
             </column>
         </fieldGroup>
-        <textField id="destSum"
-                   caption="Сумма после конвертации"
+        <textField id="convertedSum"
+                   caption="msg://convertedSum"
                    editable="false"/>
         <fieldGroup datasource="transferDs">
             <column>

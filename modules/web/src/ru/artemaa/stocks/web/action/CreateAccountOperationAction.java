@@ -1,6 +1,7 @@
 package ru.artemaa.stocks.web.action;
 
 import com.haulmont.bali.util.ParamsMap;
+import com.haulmont.cuba.gui.WindowManager;
 import com.haulmont.cuba.gui.components.ListComponent;
 import com.haulmont.cuba.gui.components.actions.CreateAction;
 import ru.artemaa.stocks.entity.operation.AccountOperationType;
@@ -26,12 +27,13 @@ public class CreateAccountOperationAction extends CreateAction {
         return new CreateAccountOperationAction(target, TRANSFER);
     }
 
-    public CreateAccountOperationAction(ListComponent target, AccountOperationType type) {
+    private CreateAccountOperationAction(ListComponent target, AccountOperationType type) {
         super(target);
         this.type = type;
         Map<String, Object> paramsMap = ParamsMap.of("type", type);
         setWindowParams(paramsMap);
         setInitialValues(paramsMap);
         setWindowId(getOperationEditWindowId(type));
+        setOpenType(WindowManager.OpenType.DIALOG);
     }
 }

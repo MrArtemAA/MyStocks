@@ -23,7 +23,7 @@ public class TransferEdit extends AbstractEditor<Transfer> {
     @Named("fieldGroup.rate")
     private TextField rateField;
     @Inject
-    private TextField destSum;
+    private TextField convertedSum;
 
     @Override
     public void init(Map<String, Object> params) {
@@ -49,17 +49,17 @@ public class TransferEdit extends AbstractEditor<Transfer> {
         sum.addValueChangeListener(e -> updateDestSum((BigDecimal) e.getValue(), transfer.getRate()));
         rateField.addValueChangeListener(e -> updateDestSum(transfer.getSum(), (BigDecimal) e.getValue()));
 
-        /*destSum.addValueChangeListener(e -> {
+        /*convertedSum.addValueChangeListener(e -> {
             BigDecimal sum = getItem().getSum();
             if (sum != null) {
-                rateField.setValue(((BigDecimal)destSum.getValue()).divide(sum));
+                rateField.setValue(((BigDecimal)convertedSum.getValue()).divide(sum));
             }
         });*/
     }
 
     private void updateDestSum(BigDecimal sum, BigDecimal rate) {
         if (sum != null && rate != null) {
-            destSum.setValue(sum.multiply(rate));
+            convertedSum.setValue(sum.multiply(rate));
         }
     }
 
@@ -67,7 +67,7 @@ public class TransferEdit extends AbstractEditor<Transfer> {
         if (isAccountsSet(account1, account2)) {
             boolean differentCurrencies = isDifferentCurrencies(account1, account2);
             rateField.setVisible(differentCurrencies);
-            destSum.setVisible(differentCurrencies);
+            convertedSum.setVisible(differentCurrencies);
             if (!differentCurrencies) {
                 rateField.setValue(new BigDecimal(1));
             }
