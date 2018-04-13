@@ -63,8 +63,12 @@
           extends="_local"
           name="transfer-detailed-view">
         <property name="sourceAccount"
-                  view="_minimal"/>
+                  view="_minimal">
+            <property name="currencyCode"/>
+        </property>
         <property name="destAccount"
-                  view="_minimal"/>
+                  view="_minimal">
+            <property name="currencyCode"/>
+        </property>
     </view>
 </views>

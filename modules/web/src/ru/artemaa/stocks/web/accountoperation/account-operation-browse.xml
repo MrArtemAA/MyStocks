@@ -8,11 +8,7 @@
     <dsContext>
         <groupDatasource id="accountOperationsDs"
                          class="ru.artemaa.stocks.entity.operation.AccountOperation"
-                         view="_local">
-            <query>
-                <![CDATA[select e from stocks$AccountOperation e]]>
-            </query>
-        </groupDatasource>
+                         datasourceClass="ru.artemaa.stocks.web.accountoperation.AccountOperationsDatasource"/>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
@@ -26,14 +22,15 @@
         <groupTable id="accountOperationsTable"
                     width="100%">
             <actions>
-                <action id="edit"/>
+                <action id="edit" openType="NEW_TAB"/>
                 <action id="remove"/>
+                <action id="refresh"/>
             </actions>
             <columns>
-                <column id="type"/>
                 <column id="date"/>
-                <column id="sum"/>
-                <column id="comment"/>
+                <column id="account" generator="generateAccountColumn" caption="msg://account.name"/>
+                <column id="sum" generator="generateSumColumn"/>
+                <column id="comment" maxTextLength="100"/>
             </columns>
             <rows datasource="accountOperationsDs"/>
             <rowsCount/>
@@ -46,6 +43,8 @@
                         action="accountOperationsTable.edit"/>
                 <button id="removeBtn"
                         action="accountOperationsTable.remove"/>
+                <button id="refreshBtn"
+                        action="accountOperationsTable.refresh"/>
             </buttonsPanel>
         </groupTable>
     </layout>

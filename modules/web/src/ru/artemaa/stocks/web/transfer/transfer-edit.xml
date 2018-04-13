@@ -34,11 +34,11 @@
                 <field property="rate"/>
             </column>
         </fieldGroup>
-        <fieldGroup>
+        <textField id="convertedSum"
+                   caption="msg://convertedSum"
+                   editable="false"/>
+        <fieldGroup datasource="transferDs">
             <column>
-                <field>
-                    <textField id="destSum"/>
-                </field>
                 <field property="comment"
                        rows="5"/>
             </column>

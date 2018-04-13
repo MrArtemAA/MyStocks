@@ -8,6 +8,7 @@ import com.haulmont.cuba.core.global.DeletePolicy;
 import ru.artemaa.stocks.entity.Account;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 
@@ -31,8 +32,10 @@ public class Transfer extends AccountOperation {
     @JoinColumn(name = "DEST_ACCOUNT_ID")
     protected Account destAccount;
 
+    @DecimalMin("0")
+    @NotNull
     @Column(name = "RATE")
-    protected BigDecimal rate;
+    protected BigDecimal rate = new BigDecimal(1);
 
     public void setSourceAccount(Account sourceAccount) {
         this.sourceAccount = sourceAccount;

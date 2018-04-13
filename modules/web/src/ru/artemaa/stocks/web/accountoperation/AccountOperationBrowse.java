@@ -2,16 +2,18 @@ package ru.artemaa.stocks.web.accountoperation;
 
 import com.haulmont.bali.util.ParamsMap;
 import com.haulmont.cuba.core.global.Messages;
-import com.haulmont.cuba.gui.components.AbstractLookup;
-import com.haulmont.cuba.gui.components.Button;
-import com.haulmont.cuba.gui.components.GroupTable;
+import com.haulmont.cuba.gui.components.*;
 import com.haulmont.cuba.gui.components.actions.EditAction;
+import ru.artemaa.stocks.entity.Account;
 import ru.artemaa.stocks.entity.operation.AccountOperation;
 import ru.artemaa.stocks.entity.operation.AccountOperationType;
+import ru.artemaa.stocks.entity.operation.SimpleAccountOperation;
+import ru.artemaa.stocks.entity.operation.Transfer;
 import ru.artemaa.stocks.web.action.CreateAccountOperationAction;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.math.BigDecimal;
 import java.util.Map;
 
 import static ru.artemaa.stocks.entity.operation.AccountOperationType.*;
@@ -52,6 +54,15 @@ public class AccountOperationBrowse extends AbstractLookup {
             editAction.setWindowId(getOperationEditWindowId(type));
             return true;
         });
+
+        accountOperationsTable.setIconProvider(entity -> {
+            switch (entity.getType()) {
+                case INCOME: return "font-icon:PLUS";//"icons/plus-btn.png";
+                case EXPENSE: return "font-icon:MINUS";//"icons/minus.png";
+                case TRANSFER: return "font-icon:ARROW_RIGHT";//"icons/arrow.png";
+                default: return "";
+            }
+        });
     }
 
     public static String getOperationEditWindowId(AccountOperationType type) {
@@ -61,6 +72,45 @@ public class AccountOperationBrowse extends AbstractLookup {
                 return "stocks$SimpleAccountOperation.edit";
             case TRANSFER:
                 return "stocks$Transfer.edit";
+        }
+        return null;
+    }
+
+    public Component generateAccountColumn(AccountOperation operation) {
+        switch (operation.getType()) {
+            case INCOME:
+            case EXPENSE:
+                SimpleAccountOperation simpleAccountOperation = (SimpleAccountOperation) operation;
+                return new Table.PlainTextCell(simpleAccountOperation.getAccount().getInstanceName() +
+                        " (" + simpleAccountOperation.getCategory().getName() + ")");
+            case TRANSFER:
+                Transfer transfer = (Transfer) operation;
+                Account sourceAccount = transfer.getSourceAccount();
+                Account destAccount = transfer.getDestAccount();
+                return new Table.PlainTextCell(sourceAccount.getInstanceName() + " на " + destAccount.getInstanceName());
+        }
+        return null;
+    }
+
+    public Component generateSumColumn(AccountOperation operation) {
+        switch (operation.getType()) {
+            case INCOME:
+            case EXPENSE:
+                SimpleAccountOperation simpleAccountOperation = (SimpleAccountOperation) operation;
+                String currencyCode = simpleAccountOperation.getAccount().getCurrencyCode();
+                return new Table.PlainTextCell(simpleAccountOperation.getSum() + " " + currencyCode);
+            case TRANSFER:
+                Transfer transfer = (Transfer) operation;
+                String sourceCurrencyCode = transfer.getSourceAccount().getCurrencyCode();
+                String destCurrencyCode = transfer.getDestAccount().getCurrencyCode();
+                BigDecimal sum = transfer.getSum();
+                BigDecimal convertedSum = sum.multiply(transfer.getRate());
+                if (sourceCurrencyCode.equals(destCurrencyCode)) {
+                    return new Table.PlainTextCell(sum + " " + sourceCurrencyCode);
+                } else {
+                    return new Table.PlainTextCell(sum + " " + sourceCurrencyCode +
+                            " (" + convertedSum + " " + destCurrencyCode + ")");
+                }
         }
         return null;
     }

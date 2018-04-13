@@ -23,7 +23,7 @@
         display: block;
       }
     </style> 
-    <cuba-entity entity-name="stocks$Operation" entity-id="[[entityId]]" view="operation-with-stock-view" data="{{entity}}"></cuba-entity> 
+    <cuba-entity entity-name="stocks$Operation" entity-id="[[entityId]]" view="operation-detailed-view" data="{{entity}}"></cuba-entity> 
     <cuba-entity-form id="form" entity-name="stocks$Operation" entity="{{entity}}" on-cuba-form-response="_onSuccess" on-cuba-form-error="_onError" server-errors="{{serverErrors}}"> 
       <paper-card> 
         <div class="card-content"> 

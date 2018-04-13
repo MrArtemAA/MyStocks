@@ -2,11 +2,13 @@
 <menu-config xmlns="http://schemas.haulmont.com/cuba/menu.xsd">
     <item insertBefore="administration"
           screen="stocks$Account.browse"/>
-    <item insertBefore="administration"
-          screen="stocks$AccountOperation.browse"/>
-    <item insertBefore="administration"
-          openType="NEW_TAB"
-          screen="stocks$Operation.browse"/>
+    <menu id="operations"
+          insertBefore="administration">
+        <item openType="NEW_TAB"
+              screen="stocks$Operation.browse"/>
+        <item openType="NEW_TAB"
+              screen="stocks$AccountOperation.browse"/>
+    </menu>
     <menu id="references"
           insertBefore="administration">
         <item openType="DIALOG"
