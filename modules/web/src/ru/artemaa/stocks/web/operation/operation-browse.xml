@@ -37,6 +37,9 @@
                 <column id="date"/>
                 <column id="price"/>
                 <column id="amount"/>
+                <column id="pricePerOne"
+                        caption="msg://pricePerOne"
+                        generator="generatePricePerOneColumn"/>
                 <column id="portfolio"/>
             </columns>
             <rows datasource="operationsDs"/>

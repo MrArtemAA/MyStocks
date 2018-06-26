@@ -1,7 +1,10 @@
 package ru.artemaa.stocks.web.operation;
 
 import com.haulmont.cuba.gui.components.AbstractLookup;
+import com.haulmont.cuba.gui.components.Component;
+import com.haulmont.cuba.gui.components.Table;
 import com.haulmont.cuba.gui.components.actions.EditAction;
+import ru.artemaa.stocks.entity.Operation;
 
 import javax.inject.Named;
 import java.util.Map;
@@ -19,5 +22,9 @@ public class OperationBrowse extends AbstractLookup {
         editAction.getBulkEditorIntegration()
                 .setEnabled(true)
                 .setOpenType(DIALOG);
+    }
+
+    public Component generatePricePerOneColumn(Operation operation) {
+        return new Table.PlainTextCell("" + (operation.getPrice() / operation.getAmount()));
     }
 }
