@@ -11,7 +11,7 @@
         <property name="remoteServices">
             <map>
                 <entry key="stocks_StockSummaryService"
-                       value="ru.artemaa.stocks.service.StockSummaryService"/>
+                       value="ru.artemaa.stocks.service.SummaryService"/>
                 <entry key="stocks_InvestIdeaNotificationService"
                        value="ru.artemaa.stocks.service.InvestIdeaNotificationService"/>
                 <entry key="stocks_CurrencyService"

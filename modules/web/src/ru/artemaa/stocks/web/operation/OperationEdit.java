@@ -8,7 +8,7 @@ import com.haulmont.cuba.gui.components.TextField;
 import ru.artemaa.stocks.entity.Operation;
 import ru.artemaa.stocks.entity.OperationType;
 import ru.artemaa.stocks.entity.Stock;
-import ru.artemaa.stocks.service.StockSummaryService;
+import ru.artemaa.stocks.service.SummaryService;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -17,7 +17,7 @@ import static ru.artemaa.stocks.entity.OperationType.Dividends;
 
 public class OperationEdit extends AbstractEditor<Operation> {
     @Inject
-    private StockSummaryService stockSummaryService;
+    private SummaryService summaryService;
 
     @Named("fieldGroup.portfolio")
     private PickerField portfolioPicker;
@@ -38,7 +38,7 @@ public class OperationEdit extends AbstractEditor<Operation> {
                 Object portfolio = portfolioPicker.getValue();
                 Stock stock = stockPicker.getValue();
                 if (portfolio != null && stock != null && value == Dividends) {
-                    stockSummaryService.getStockSummary(stock.getId()).stream()
+                    summaryService.getStockSummary(stock.getId()).stream()
                             .filter(stockSummary -> portfolio.equals(stockSummary.getPortfolio()))
                             .findFirst()
                             .ifPresent(stockSummary -> amount.setValue(stockSummary.getAmount()));

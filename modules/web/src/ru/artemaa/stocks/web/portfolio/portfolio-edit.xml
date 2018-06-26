@@ -8,10 +8,10 @@
     <dsContext>
         <datasource id="portfolioDs"
                     class="ru.artemaa.stocks.entity.portfolio.Portfolio"
-                    view="portfolio-edit-view">
-            <collectionDatasource id="incomeDs"
-                                  property="income"/>
-        </datasource>
+                    view="portfolio-edit-view"/>
+        <collectionDatasource id="portfolioSummariesDs"
+                              class="ru.artemaa.stocks.entity.portfolio.PortfolioSummary"
+                              datasourceClass="ru.artemaa.stocks.web.portfolio.PortfolioSummaryCollectionDatasource"/>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
@@ -23,27 +23,19 @@
                 <field property="name"/>
             </column>
         </fieldGroup>
-        <textField id="incomeAmount" caption="msg://editor.totalIncomeAmount" editable="false"/>
+        <textField id="incomeAmount"
+                   caption="msg://editor.totalIncomeAmount"
+                   editable="false"/>
         <groupBox id="incomeBox"
                   caption="msg://ru.artemaa.stocks.entity.portfolio/Portfolio.income">
             <table id="incomeTable"
                    height="200px"
                    width="100%">
-                <actions>
-                    <action id="create"/>
-                    <action id="edit"/>
-                    <action id="remove"/>
-                </actions>
                 <columns>
-                    <column id="date"/>
-                    <column id="amount"/>
+                    <column id="sum"/>
+                    <column id="currency"/>
                 </columns>
-                <rows datasource="incomeDs"/>
-                <buttonsPanel>
-                    <button action="incomeTable.create"/>
-                    <button action="incomeTable.edit"/>
-                    <button action="incomeTable.remove"/>
-                </buttonsPanel>
+                <rows datasource="portfolioSummariesDs"/>
             </table>
         </groupBox>
         <frame id="windowActions"

@@ -5,6 +5,10 @@ import com.haulmont.chile.core.annotations.MetaProperty;
 import com.haulmont.cuba.core.entity.BaseUuidEntity;
 import ru.artemaa.stocks.entity.portfolio.Portfolio;
 
+import java.math.BigDecimal;
+
+import static java.math.BigDecimal.valueOf;
+
 @MetaClass(name = "stocks$StockSummary")
 public class StockSummary extends BaseUuidEntity {
     private static final long serialVersionUID = 5580946325692918983L;
@@ -22,22 +26,58 @@ public class StockSummary extends BaseUuidEntity {
     protected Double totalPurchasePrice = 0.0;
 
     @MetaProperty
-    protected Double avgPurchasePrice = 0.0;
+    protected BigDecimal avgPurchasePrice = valueOf(0.0);
 
     @MetaProperty
     protected Double totalSellPrice = 0.0;
 
     @MetaProperty
-    protected Double avgSellPrice = 0.0;
+    protected BigDecimal avgSellPrice = valueOf(0.0);
 
     @MetaProperty
     protected Double totalDividends = 0.0;
 
     @MetaProperty
-    protected Double avgDividends = 0.0;
+    protected BigDecimal avgDividends = valueOf(0.0);
 
     @MetaProperty
-    protected Double priceDividendsRatio = 0.0;
+    protected BigDecimal priceDividendsRatio = valueOf(0.0);
+
+    public BigDecimal getPriceDividendsRatio() {
+        return priceDividendsRatio;
+    }
+
+    public void setPriceDividendsRatio(BigDecimal priceDividendsRatio) {
+        this.priceDividendsRatio = priceDividendsRatio;
+    }
+
+
+    public BigDecimal getAvgPurchasePrice() {
+        return avgPurchasePrice;
+    }
+
+    public void setAvgPurchasePrice(BigDecimal avgPurchasePrice) {
+        this.avgPurchasePrice = avgPurchasePrice;
+    }
+
+
+    public BigDecimal getAvgSellPrice() {
+        return avgSellPrice;
+    }
+
+    public void setAvgSellPrice(BigDecimal avgSellPrice) {
+        this.avgSellPrice = avgSellPrice;
+    }
+
+
+    public BigDecimal getAvgDividends() {
+        return avgDividends;
+    }
+
+    public void setAvgDividends(BigDecimal avgDividends) {
+        this.avgDividends = avgDividends;
+    }
+
 
     public void setPortfolio(Portfolio portfolio) {
         this.portfolio = portfolio;
@@ -48,28 +88,12 @@ public class StockSummary extends BaseUuidEntity {
     }
 
 
-    public void setAvgPurchasePrice(Double avgPurchasePrice) {
-        this.avgPurchasePrice = avgPurchasePrice;
-    }
-
-    public Double getAvgPurchasePrice() {
-        return avgPurchasePrice;
-    }
-
     public void setTotalSellPrice(Double totalSellPrice) {
         this.totalSellPrice = totalSellPrice;
     }
 
     public Double getTotalSellPrice() {
         return totalSellPrice;
-    }
-
-    public void setAvgSellPrice(Double avgSellPrice) {
-        this.avgSellPrice = avgSellPrice;
-    }
-
-    public Double getAvgSellPrice() {
-        return avgSellPrice;
     }
 
 
@@ -104,22 +128,6 @@ public class StockSummary extends BaseUuidEntity {
 
     public Double getTotalDividends() {
         return totalDividends;
-    }
-
-    public void setAvgDividends(Double avgDividends) {
-        this.avgDividends = avgDividends;
-    }
-
-    public Double getAvgDividends() {
-        return avgDividends;
-    }
-
-    public void setPriceDividendsRatio(Double priceDividendsRatio) {
-        this.priceDividendsRatio = priceDividendsRatio;
-    }
-
-    public Double getPriceDividendsRatio() {
-        return priceDividendsRatio;
     }
 
 

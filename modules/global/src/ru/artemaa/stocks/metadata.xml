@@ -4,5 +4,6 @@
                     root-package="ru.artemaa.stocks">
         <class>ru.artemaa.stocks.entity.StockSummary</class>
         <class>ru.artemaa.stocks.entity.Currency</class>
+        <class>ru.artemaa.stocks.entity.portfolio.PortfolioSummary</class>
     </metadata-model>
 </metadata>

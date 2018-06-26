@@ -22,17 +22,6 @@
           extends="_local"
           name="portfolio-edit-view">
         <property name="name"/>
-        <property name="income"
-                  view="_minimal">
-            <property name="date"/>
-            <property name="amount"/>
-        </property>
-    </view>
-    <view class="ru.artemaa.stocks.entity.portfolio.PortfolioIncome"
-          extends="_local"
-          name="portfolioIncome-view">
-        <property name="date"/>
-        <property name="amount"/>
     </view>
     <view class="ru.artemaa.stocks.entity.portfolio.Portfolio"
           extends="_local"

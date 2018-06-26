@@ -54,40 +54,6 @@ create table STOCKS_PORTFOLIO (
     primary key (ID)
 )^
 -- end STOCKS_PORTFOLIO
--- begin STOCKS_PORTFOLIO_INCOME
-create table STOCKS_PORTFOLIO_INCOME (
-    ID uuid,
-    VERSION integer not null,
-    CREATE_TS timestamp,
-    CREATED_BY varchar(50),
-    UPDATE_TS timestamp,
-    UPDATED_BY varchar(50),
-    DELETE_TS timestamp,
-    DELETED_BY varchar(50),
-    --
-    DATE_ date not null,
-    AMOUNT bigint not null,
-    PORTFOLIO_ID uuid,
-    --
-    primary key (ID)
-)^
--- end STOCKS_PORTFOLIO_INCOME
--- begin STOCKS_INDUSTRY
-create table STOCKS_INDUSTRY (
-    ID uuid,
-    VERSION integer not null,
-    CREATE_TS timestamp,
-    CREATED_BY varchar(50),
-    UPDATE_TS timestamp,
-    UPDATED_BY varchar(50),
-    DELETE_TS timestamp,
-    DELETED_BY varchar(50),
-    --
-    NAME varchar(255) not null,
-    --
-    primary key (ID)
-)^
--- end STOCKS_INDUSTRY
 -- begin STOCKS_INVEST_IDEA
 create table STOCKS_INVEST_IDEA (
     ID uuid,
@@ -107,6 +73,22 @@ create table STOCKS_INVEST_IDEA (
     primary key (ID)
 )^
 -- end STOCKS_INVEST_IDEA
+-- begin STOCKS_INDUSTRY
+create table STOCKS_INDUSTRY (
+    ID uuid,
+    VERSION integer not null,
+    CREATE_TS timestamp,
+    CREATED_BY varchar(50),
+    UPDATE_TS timestamp,
+    UPDATED_BY varchar(50),
+    DELETE_TS timestamp,
+    DELETED_BY varchar(50),
+    --
+    NAME varchar(255) not null,
+    --
+    primary key (ID)
+)^
+-- end STOCKS_INDUSTRY
 -- begin STOCKS_ACCOUNT
 create table STOCKS_ACCOUNT (
     ID uuid,

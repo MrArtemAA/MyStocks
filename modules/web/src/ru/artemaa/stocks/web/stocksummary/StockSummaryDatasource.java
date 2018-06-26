@@ -3,7 +3,7 @@ package ru.artemaa.stocks.web.stocksummary;
 import com.haulmont.cuba.core.global.AppBeans;
 import com.haulmont.cuba.gui.data.impl.CustomGroupDatasource;
 import ru.artemaa.stocks.entity.StockSummary;
-import ru.artemaa.stocks.service.StockSummaryService;
+import ru.artemaa.stocks.service.SummaryService;
 
 import java.util.Collection;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.UUID;
 public class StockSummaryDatasource extends CustomGroupDatasource<StockSummary, UUID> {
 
     //@Inject
-    private StockSummaryService summaryService = AppBeans.get(StockSummaryService.class);
+    private SummaryService summaryService = AppBeans.get(SummaryService.class);
 
     @Override
     protected Collection<StockSummary> getEntities(Map<String, Object> params) {

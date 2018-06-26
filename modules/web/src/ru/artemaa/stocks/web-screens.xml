@@ -11,8 +11,6 @@
             template="ru/artemaa/stocks/web/operation/operation-edit.xml"/>
     <screen id="stocks$StockSummary.browse"
             template="ru/artemaa/stocks/web/stocksummary/stock-summary-browse.xml"/>
-    <screen id="stocks$PortfolioIncome.edit"
-            template="ru/artemaa/stocks/web/portfolioincome/portfolio-income-edit.xml"/>
     <screen id="stocks$Portfolio.browse"
             template="ru/artemaa/stocks/web/portfolio/portfolio-browse.xml"/>
     <screen id="stocks$Portfolio.edit"
