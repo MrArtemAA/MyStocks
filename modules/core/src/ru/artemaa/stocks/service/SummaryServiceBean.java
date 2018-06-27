@@ -13,6 +13,7 @@ import ru.artemaa.stocks.entity.portfolio.Portfolio;
 import ru.artemaa.stocks.entity.portfolio.PortfolioSummary;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -101,9 +102,9 @@ public class SummaryServiceBean implements SummaryService {
     }
 
     private class StockSummaryBuilder extends SummaryBuilder<StockSummary> {
-        Integer totalDividendsAmount;
-        Integer totalPurchasedAmount;
-        Integer totalSoldAmount;
+        Integer totalDividendsAmount = 0;
+        Integer totalPurchasedAmount = 0;
+        Integer totalSoldAmount = 0;
 
         StockSummaryBuilder(Portfolio portfolio, Stock stock) {
             super(StockSummary.class);
@@ -132,15 +133,19 @@ public class SummaryServiceBean implements SummaryService {
         }
 
         public StockSummary build() {
-            summary.setAvgPurchasePrice(valueOf(summary.getTotalPurchasePrice() / totalPurchasedAmount));
-            summary.setAvgSellPrice(valueOf(summary.getTotalSellPrice() / totalSoldAmount));
-            summary.setAvgDividends(valueOf(summary.getTotalDividends() / totalDividendsAmount));
+            summary.setAvgPurchasePrice(divide(summary.getTotalPurchasePrice(), totalPurchasedAmount));
+            summary.setAvgSellPrice(divide(summary.getTotalSellPrice(), totalSoldAmount));
+            summary.setAvgDividends(divide(summary.getTotalDividends(), totalDividendsAmount));
             summary.setPriceDividendsRatio(summary.getAvgDividends()
                     .divide(summary.getAvgPurchasePrice())
                     .multiply(valueOf(100))
             );
 
             return summary;
+        }
+
+        private BigDecimal divide(Double number1, Integer number2) {
+            return number2 == 0 ? valueOf(0.0) : valueOf(number1 / number2);
         }
     }
 
@@ -198,6 +203,7 @@ public class SummaryServiceBean implements SummaryService {
         return dataManager.load(Operation.class)
                 .query("select o from stocks$Operation o where o.portfolio.id = :portfolioId")
                 .parameter("portfolioId", portfolio.getId())
+                .view("operation-detailed-view")
                 .list();
     }
 
@@ -205,6 +211,7 @@ public class SummaryServiceBean implements SummaryService {
         return dataManager.load(Operation.class)
                 .query("select o from stocks$Operation o where o.stock.id = :stockId")
                 .parameter("stockId", stock.getId())
+                .view("operation-detailed-view")
                 .list();
     }
 }

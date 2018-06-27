@@ -14,7 +14,7 @@ import java.util.UUID;
  * @author Artem Areshko
  *         27.07.2017
  */
-public class StockSummaryDatasource extends CustomGroupDatasource<StockSummary, UUID> {
+public class StockSummaryCollectionDatasource extends CustomGroupDatasource<StockSummary, UUID> {
 
     //@Inject
     private SummaryService summaryService = AppBeans.get(SummaryService.class);

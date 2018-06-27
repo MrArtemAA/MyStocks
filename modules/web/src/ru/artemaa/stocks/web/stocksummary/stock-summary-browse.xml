@@ -8,7 +8,7 @@
     <dsContext>
         <groupDatasource id="stockSummariesDs"
                          class="ru.artemaa.stocks.entity.StockSummary"
-                         datasourceClass="ru.artemaa.stocks.web.stocksummary.StockSummaryDatasource"/>
+                         datasourceClass="ru.artemaa.stocks.web.stocksummary.StockSummaryCollectionDatasource"/>
     </dsContext>
     <dialogMode height="600"
                 width="800"/>
@@ -27,8 +27,8 @@
             <columns>
                 <group>
                     <column id="stock"/>
-                    <column id="portfolio"/>
                 </group>
+                <column id="portfolio"/>
                 <column id="amount"/>
                 <column id="totalPurchasePrice"/>
                 <column id="avgPurchasePrice"/>
