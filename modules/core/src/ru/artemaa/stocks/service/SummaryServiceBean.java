@@ -3,7 +3,7 @@ package ru.artemaa.stocks.service;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.LoadContext;
 import com.haulmont.cuba.core.global.Metadata;
-import org.slf4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.artemaa.stocks.entity.Currency;
 import ru.artemaa.stocks.entity.Operation;
@@ -18,11 +18,10 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static java.math.BigDecimal.valueOf;
-import static org.slf4j.LoggerFactory.getLogger;
 
+@Slf4j
 @Service(SummaryService.NAME)
 public class SummaryServiceBean implements SummaryService {
-    private static final Logger LOG = getLogger(SummaryServiceBean.class);
 
     @Inject
     private DataManager dataManager;
@@ -78,7 +77,7 @@ public class SummaryServiceBean implements SummaryService {
         }
 
         public final void processOperation(Operation operation) {
-            LOG.info(operation.toString());
+            log.info(operation.toString());
             switch (operation.getType()) {
                 case Purchase:
                     doProcessPurchase(operation);
