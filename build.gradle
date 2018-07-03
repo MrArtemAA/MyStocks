@@ -74,9 +74,9 @@ configure([globalModule, coreModule, guiModule, webModule]) {
 
 configure(globalModule) {
 
-    dependencies {
+    /*dependencies {
         compileOnly('org.projectlombok:lombok:1.18.0')
-    }
+    }*/
     task enhance(type: CubaEnhancing)
 
     
@@ -94,7 +94,8 @@ configure(coreModule) {
         provided(servletApi)
         jdbc(postgres)
         testRuntime(postgres)
-        compileOnly('org.projectlombok:lombok:1.18.0')
+        testCompile('org.hamcrest:hamcrest-library:1.3')
+        //compileOnly('org.projectlombok:lombok:1.18.0')
     }
 
     task cleanConf(description: 'Cleans up conf directory') {

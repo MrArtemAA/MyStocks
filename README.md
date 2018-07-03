@@ -6,3 +6,6 @@
 ## Используемые инструменты и технологии
 * [CUBA.platform](https://www.cuba-platform.ru/)
 * Java8
+
+## Настройка
+1. Завести коды используемых валют: Администрирование -> Свойства приложения -> stocks.currency.codes = CODE1,CODE2. Например, USD,RUB
