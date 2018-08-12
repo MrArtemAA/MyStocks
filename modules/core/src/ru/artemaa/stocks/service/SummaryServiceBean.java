@@ -136,10 +136,12 @@ public class SummaryServiceBean implements SummaryService {
             summary.setAvgPurchasePrice(divide(summary.getTotalPurchasePrice(), totalPurchasedAmount));
             summary.setAvgSellPrice(divide(summary.getTotalSellPrice(), totalSoldAmount));
             summary.setAvgDividends(divide(summary.getTotalDividends(), totalDividendsAmount));
-            summary.setPriceDividendsRatio(summary.getAvgDividends()
-                    .divide(summary.getAvgPurchasePrice())
-                    .multiply(valueOf(100))
-            );
+            if (summary.getAmount() > 0) {
+                summary.setPriceDividendsRatio(summary.getAvgDividends()
+                        .divide(summary.getAvgPurchasePrice(), BigDecimal.ROUND_HALF_EVEN)
+                        .multiply(valueOf(100))
+                );
+            }
 
             return summary;
         }
