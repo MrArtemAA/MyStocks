@@ -8,7 +8,7 @@ modules/*/build/*
 out
 test-run
 .gradle/
-docker-image
+docker-image/stocks.jar
 modules/core/web/META-INF/heroku-context.xml
 modules/core/web/META-INF/jetty-env.xml
 dataSources
