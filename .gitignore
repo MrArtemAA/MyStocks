@@ -8,9 +8,9 @@ modules/*/build/*
 out
 test-run
 .gradle/
-docker-image/stocks.jar
+deployment/*.jar
+deployment/run-docker-toolbox.sh
 modules/core/web/META-INF/heroku-context.xml
-modules/core/web/META-INF/jetty-env.xml
 dataSources
 .ideaDataSources
 .idea
