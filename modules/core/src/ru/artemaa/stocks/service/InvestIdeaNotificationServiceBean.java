@@ -4,6 +4,7 @@ import com.haulmont.cuba.core.app.EmailerAPI;
 import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.EmailInfo;
 import com.haulmont.cuba.core.global.LoadContext;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import ru.artemaa.stocks.config.StocksConfig;
@@ -33,10 +34,10 @@ public class InvestIdeaNotificationServiceBean implements InvestIdeaNotification
                         .setParameter("endDate", new Date())
         ));
 
-        emailerAPI.sendEmailAsync(getEmailInfo());
+        emailerAPI.sendEmailAsync(getEmailInfo(investIdeas));
     }
 
-    private EmailInfo getEmailInfo() {
+    private EmailInfo getEmailInfo(List<InvestIdea> investIdeas) {
         String userEmail = stocksConfig.getUserEmail();
         if (StringUtils.isEmpty(userEmail)) {
             throw new RuntimeException("В свойствах базы данных не указан email пользователя для отправки уведомления");
