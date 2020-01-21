@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="ru.artemaa.finances.personal.web.stocksummary.StockSummaryBrowse"
+        focusComponent="stockSummariesTable"
+        lookupComponent="stockSummariesTable"
+        messagesPack="ru.artemaa.stocks.web.stocksummary">
+    <dsContext>
+        <groupDatasource id="stockSummariesDs"
+                         class="ru.artemaa.stocks.entity.StockSummary"
+                         datasourceClass="ru.artemaa.finances.personal.web.stocksummary.StockSummaryCollectionDatasource"/>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="stockSummariesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="stockSummariesTable"
+                datasource="stockSummariesDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="stockSummariesTable"
+                    width="100%">
+            <actions>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <group>
+                    <column id="stock"/>
+                </group>
+                <column id="portfolio"/>
+                <column id="amount"/>
+                <column id="totalPurchasePrice"/>
+                <column id="avgPurchasePrice"/>
+                <column id="totalSellPrice"/>
+                <column id="avgSellPrice"/>
+                <column id="totalDividends"/>
+                <column id="avgDividends"/>
+                <column id="priceDividendsRatio"/>
+            </columns>
+            <rows datasource="stockSummariesDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="refreshButton"
+                        action="stockSummariesTable.refresh"
+                        icon="icons/refresh.png"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

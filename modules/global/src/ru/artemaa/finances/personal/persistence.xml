@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+             version="2.0">
+    <persistence-unit name="Stocks"
+                      transaction-type="RESOURCE_LOCAL">
+        <class>ru.artemaa.finances.personal.entity.Operation</class>
+        <class>ru.artemaa.finances.personal.entity.Stock</class>
+        <class>ru.artemaa.finances.personal.entity.portfolio.Portfolio</class>
+        <class>ru.artemaa.finances.personal.entity.InvestIdea</class>
+        <class>ru.artemaa.finances.personal.entity.Industry</class>
+        <class>ru.artemaa.finances.personal.entity.Account</class>
+        <class>ru.artemaa.finances.personal.entity.AccountType</class>
+        <class>ru.artemaa.finances.personal.entity.operation.AccountOperation</class>
+        <class>ru.artemaa.finances.personal.entity.PaymentCategory</class>
+        <class>ru.artemaa.finances.personal.entity.operation.SimpleAccountOperation</class>
+        <class>ru.artemaa.finances.personal.entity.operation.Transfer</class>
+    </persistence-unit>
+</persistence>

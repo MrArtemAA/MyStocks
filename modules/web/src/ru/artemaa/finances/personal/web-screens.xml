@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<screen-config xmlns="http://schemas.haulmont.com/cuba/screens.xsd">
+    <include file="/ru/artemaa/finances/personal/screens.xml"/>
+    <screen id="stocks$Currency.browse"
+            template="/ru/artemaa/finances/personal/web/currency/currency-browse.xml"/>
+    <screen id="stocks$Stock.browse"
+            template="/ru/artemaa/finances/personal/web/stock/stock-browse.xml"/>
+    <screen id="stocks$Operation.browse"
+            template="/ru/artemaa/finances/personal/web/operation/operation-browse.xml"/>
+    <screen id="stocks$Operation.edit"
+            template="/ru/artemaa/finances/personal/web/operation/operation-edit.xml"/>
+    <screen id="stocks$StockSummary.browse"
+            template="/ru/artemaa/finances/personal/web/stocksummary/stock-summary-browse.xml"/>
+    <screen id="stocks$Portfolio.browse"
+            template="/ru/artemaa/finances/personal/web/portfolio/portfolio-browse.xml"/>
+    <screen id="stocks$Portfolio.edit"
+            template="/ru/artemaa/finances/personal/web/portfolio/portfolio-edit.xml"/>
+    <screen id="stocks$InvestIdea.browse"
+            template="/ru/artemaa/finances/personal/web/investidea/invest-idea-browse.xml"/>
+    <screen id="stocks$Industry.browse"
+            template="/ru/artemaa/finances/personal/web/industry/industry-browse.xml"/>
+    <screen id="stocks$AccountType.browse"
+            template="/ru/artemaa/finances/personal/web/accounttype/account-type-browse.xml"/>
+    <screen id="stocks$Account.browse"
+            template="/ru/artemaa/finances/personal/web/account/account-browse.xml"/>
+    <screen id="stocks$Account.edit"
+            template="/ru/artemaa/finances/personal/web/account/account-edit.xml"/>
+    <screen id="stocks$PaymentCategory.browse"
+            template="/ru/artemaa/finances/personal/web/paymentcategory/payment-category-browse.xml"/>
+    <screen id="stocks$SimpleAccountOperation.edit"
+            template="/ru/artemaa/finances/personal/web/simpleaccountoperation/simple-account-operation-edit.xml"/>
+    <screen id="stocks$AccountOperation.browse"
+            template="/ru/artemaa/finances/personal/web/accountoperation/account-operation-browse.xml"/>
+    <screen id="stocks$Transfer.edit"
+            template="/ru/artemaa/finances/personal/web/transfer/transfer-edit.xml"/>
+</screen-config>

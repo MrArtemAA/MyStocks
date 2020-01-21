@@ -16,7 +16,7 @@ buildscript {
     }
 }
 
-def modulePrefix = 'stocks'
+def modulePrefix = 'personal-finances'
 
 def globalModule = project(":${modulePrefix}-global")
 def coreModule = project(":${modulePrefix}-core")
@@ -29,7 +29,7 @@ apply(plugin: 'cuba')
 
 cuba {
     artifact {
-        group = 'ru.artemaa.stocks'
+        group = 'ru.artemaa.finances'
         version = "1.0"
         isSnapshot = false
     }

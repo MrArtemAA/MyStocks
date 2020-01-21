@@ -8,7 +8,7 @@
         <param-name>appPropertiesConfig</param-name>
         <param-value>classpath:ru/artemaa/stocks/web-app.properties
             /WEB-INF/local.app.properties
-            "file:${catalina.base}/conf/stocks/local.app.properties"</param-value>
+            "file:${catalina.base}/conf/personal-finances/local.app.properties"</param-value>
     </context-param>
     <!--Application components-->
     <context-param>

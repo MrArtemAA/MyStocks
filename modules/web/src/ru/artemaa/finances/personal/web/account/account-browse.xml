@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/window.xsd"
+        caption="msg://browseCaption"
+        class="ru.artemaa.finances.personal.web.account.AccountBrowse"
+        focusComponent="accountsTable"
+        lookupComponent="accountsTable"
+        messagesPack="ru.artemaa.stocks.web.account">
+    <dsContext>
+        <groupDatasource id="accountsDs"
+                         class="ru.artemaa.stocks.entity.Account"
+                         view="account-detailed-view">
+            <query>
+                <![CDATA[select e from stocks$Account e order by e.accountType.name]]>
+            </query>
+        </groupDatasource>
+    </dsContext>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="accountsTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="accountsTable"
+                datasource="accountsDs">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="accountsTable"
+                    width="100%">
+            <actions>
+                <action id="create"/>
+                <action id="edit"/>
+                <action id="remove"/>
+                <action id="refresh"/>
+            </actions>
+            <columns>
+                <group>
+                    <column id="accountType"/>
+                </group>
+                <column id="considerInBalance" caption="  "/>
+                <column id="name"/>
+                <column id="amount"/>
+                <column id="currency"/>
+            </columns>
+            <rows datasource="accountsDs"/>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn"
+                        action="accountsTable.create"/>
+                <button id="editBtn"
+                        action="accountsTable.edit"/>
+                <button id="removeBtn"
+                        action="accountsTable.remove"/>
+                <button id="refreshBtn"
+                        action="accountsTable.refresh"/>
+            </buttonsPanel>
+        </groupTable>
+    </layout>
+</window>

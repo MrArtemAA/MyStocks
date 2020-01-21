@@ -56,17 +56,17 @@
     <class>com.haulmont.cuba.core.entity.JmxInstance</class>
     <class>com.haulmont.cuba.security.entity.RememberMeToken</class>
     <class>com.haulmont.cuba.core.entity.ReferenceToEntity</class>
-    <class>ru.artemaa.stocks.entity.Operation</class>
-    <class>ru.artemaa.stocks.entity.Stock</class>
-    <class>ru.artemaa.stocks.entity.portfolio.Portfolio</class>
-    <class>ru.artemaa.stocks.entity.InvestIdea</class>
-    <class>ru.artemaa.stocks.entity.Industry</class>
-    <class>ru.artemaa.stocks.entity.Account</class>
-    <class>ru.artemaa.stocks.entity.AccountType</class>
-    <class>ru.artemaa.stocks.entity.operation.AccountOperation</class>
-    <class>ru.artemaa.stocks.entity.PaymentCategory</class>
-    <class>ru.artemaa.stocks.entity.operation.SimpleAccountOperation</class>
-    <class>ru.artemaa.stocks.entity.operation.Transfer</class>
+    <class>Operation</class>
+    <class>Stock</class>
+    <class>Portfolio</class>
+    <class>InvestIdea</class>
+    <class>Industry</class>
+    <class>Account</class>
+    <class>AccountType</class>
+    <class>AccountOperation</class>
+    <class>PaymentCategory</class>
+    <class>SimpleAccountOperation</class>
+    <class>Transfer</class>
     <exclude-unlisted-classes/>
     <properties>
       <property name="eclipselink.cache.coordination.propagate-asynchronously" value="false"/>

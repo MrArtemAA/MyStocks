@@ -1,5 +1,5 @@
-rootProject.name = 'Stocks'
-def modulePrefix = 'stocks'
+rootProject.name = 'personal-finances'
+def modulePrefix = 'personal-finances'
 include(":${modulePrefix}-global", ":${modulePrefix}-core", ":${modulePrefix}-web")
 project(":${modulePrefix}-global").projectDir = new File(settingsDir, 'modules/global')
 project(":${modulePrefix}-core").projectDir = new File(settingsDir, 'modules/core')
