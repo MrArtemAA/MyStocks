@@ -5,7 +5,7 @@ import com.haulmont.cuba.core.global.DataManager;
 import com.haulmont.cuba.core.global.EmailInfo;
 import com.haulmont.cuba.core.global.LoadContext;
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import ru.artemaa.stocks.config.StocksConfig;
 import ru.artemaa.stocks.entity.InvestIdea;

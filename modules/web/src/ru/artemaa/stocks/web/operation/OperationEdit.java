@@ -8,6 +8,7 @@ import com.haulmont.cuba.gui.components.TextField;
 import ru.artemaa.stocks.entity.Operation;
 import ru.artemaa.stocks.entity.OperationType;
 import ru.artemaa.stocks.entity.Stock;
+import ru.artemaa.stocks.entity.portfolio.Portfolio;
 import ru.artemaa.stocks.service.SummaryService;
 
 import javax.inject.Inject;
@@ -21,17 +22,17 @@ public class OperationEdit extends AbstractEditor<Operation> {
     private SummaryService summaryService;
 
     @Named("fieldGroup.portfolio")
-    private PickerField portfolioPicker;
+    private PickerField<Portfolio> portfolioPicker;
     @Named("fieldGroup.stock")
-    private PickerField stockPicker;
+    private PickerField<Stock> stockPicker;
     @Named("fieldGroup.type")
-    private LookupField operationType;
+    private LookupField<OperationType> operationType;
     @Named("fieldGroup.amount")
-    private TextField amount;
+    private TextField<Integer> amount;
     @Named("fieldGroup.price")
-    private TextField price;
+    private TextField<Double> price;
     @Inject
-    private TextField pricePerOne;
+    private TextField<Double> pricePerOne;
 
     @Override
     protected void postInit() {

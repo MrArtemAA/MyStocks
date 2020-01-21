@@ -15,15 +15,15 @@ import java.util.Objects;
 
 public class TransferEdit extends AbstractEditor<Transfer> {
     @Named("fieldGroup.sourceAccount")
-    private LookupPickerField sourceAccountField;
+    private LookupPickerField<Account> sourceAccountField;
     @Named("fieldGroup.destAccount")
-    private LookupPickerField destAccountField;
+    private LookupPickerField<Account> destAccountField;
     @Named("fieldGroup.sum")
-    private TextField sum;
+    private TextField<BigDecimal> sum;
     @Named("fieldGroup.rate")
-    private TextField rateField;
+    private TextField<BigDecimal> rateField;
     @Inject
-    private TextField convertedSum;
+    private TextField<BigDecimal> convertedSum;
 
     @Override
     public void init(Map<String, Object> params) {
