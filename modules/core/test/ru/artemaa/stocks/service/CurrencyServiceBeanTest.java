@@ -1,6 +1,5 @@
 package ru.artemaa.stocks.service;
 
-import mockit.Mocked;
 import org.junit.BeforeClass;
 import org.junit.ClassRule;
 import org.junit.Test;
@@ -27,7 +26,6 @@ public class CurrencyServiceBeanTest {
     private static Currency RUB;
     private static Currency EUR;
 
-    @Mocked
     private static StocksConfig stocksConfig;
 
     @BeforeClass

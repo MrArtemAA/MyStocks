@@ -1,8 +1,7 @@
-
 buildscript {
-    ext.cubaVersion = '7.0.0'
+    ext.cubaVersion = '7.1.3'
     repositories {
-        
+
         maven {
             url 'https://repo.cuba-platform.com/content/groups/work'
             credentials {
@@ -10,7 +9,7 @@ buildscript {
                 password(rootProject.hasProperty('repoPass') ? rootProject['repoPass'] : 'cuba123')
             }
         }
-        
+
     }
     dependencies {
         classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
@@ -21,7 +20,6 @@ def modulePrefix = 'stocks'
 
 def globalModule = project(":${modulePrefix}-global")
 def coreModule = project(":${modulePrefix}-core")
-def guiModule = project(":${modulePrefix}-gui")
 def webModule = project(":${modulePrefix}-web")
 
 def servletApi = 'javax.servlet:javax.servlet-api:3.1.0'
@@ -39,7 +37,7 @@ cuba {
         dir = "$project.rootDir/deploy/tomcat"
     }
     ide {
-         
+
         vcs = 'Git'
     }
 }
@@ -51,7 +49,7 @@ dependencies {
 
 def hsql = 'org.hsqldb:hsqldb:2.4.1'
 
-configure([globalModule, coreModule, guiModule, webModule]) {
+configure([globalModule, coreModule, webModule]) {
     apply(plugin: 'java')
     apply(plugin: 'maven')
     apply(plugin: 'cuba')
@@ -81,9 +79,11 @@ configure(globalModule) {
     /*dependencies {
         compileOnly('org.projectlombok:lombok:1.18.0')
     }*/
-    task enhance(type: CubaEnhancing)
-
-    
+    entitiesEnhancing {
+        main {
+            enabled = true
+        }
+    }
 }
 
 configure(coreModule) {
@@ -135,18 +135,6 @@ configure(coreModule) {
     }
 }
 
-configure(guiModule) {
-    dependencies {
-        compile(globalModule)
-
-    }
-
-    task deployConf(type: Copy) {
-        from file('src')
-        include "ru/artemaa/stocks/**"
-        into "$cuba.tomcat.dir/conf/${modulePrefix}"
-    }
-}
 
 configure(webModule) {
     configurations {
@@ -155,10 +143,10 @@ configure(webModule) {
 
     dependencies {
         compileOnly(servletApi)
-        compile(guiModule)
+        compile(globalModule)
 
     }
-    
+
     task webArchive(type: Zip) {
         from file("$buildDir/web")
         from file('web')
@@ -193,12 +181,9 @@ configure(webModule) {
 
     task deploy(dependsOn: [assemble, cleanConf], type: CubaDeployment) {
         appName = "${modulePrefix}"
-        appJars(modulePrefix + '-global', modulePrefix + '-gui', modulePrefix + '-web')
+        appJars(modulePrefix + '-global', modulePrefix + '-web')
     }
 }
-
-
-
 
 
 task undeploy(type: Delete, dependsOn: ":${modulePrefix}-web:cleanConf") {
@@ -244,7 +229,7 @@ task stage(dependsOn: ['setupTomcat', ":${modulePrefix}-core:deploy", ":${module
         }
 
         def webAppDir = new File("deploy/tomcat/webapps/${modulePrefix}")
-        webAppDir.renameTo( new File(rootFolder.path) )
+        webAppDir.renameTo(new File(rootFolder.path))
 
         // add local.app.properties for web application
         def webConfDir = new File('deploy/tomcat/conf/ROOT/')
@@ -260,5 +245,5 @@ task buildUberJar(type: CubaUberJarBuilding) {
     singleJar = true
     logbackConfigurationFile = 'etc/logback.xml'
     coreJettyEnvPath = 'modules/core/web/META-INF/jetty-env.xml'
-    appProperties = ['cuba.automaticDatabaseUpdate' : true]
+    appProperties = ['cuba.automaticDatabaseUpdate': true]
 }
