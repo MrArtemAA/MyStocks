@@ -1,23 +1,23 @@
 <Context>
     <!-- Database connection -->
-    <Resource driverClassName="org.postgresql.Driver"
-              maxIdle="2"
-              maxTotal="20"
-              maxWaitMillis="5000"
-              name="jdbc/CubaDS"
-              password="postgres"
-              type="javax.sql.DataSource"
-              url="jdbc:postgresql://localhost/stocks"
-              username="postgres"/>
     <!-- Switch off session serialization -->
     <Manager pathname=""/>
-    <!--<Resource driverClassName="org.hsqldb.jdbc.JDBCDriver"
+    <!--<Resource driverClassName="org.postgresql.Driver"
           maxIdle="2"
           maxTotal="20"
           maxWaitMillis="5000"
           name="jdbc/CubaDS"
-          password=""
+          password="postgres"
           type="javax.sql.DataSource"
-          url="jdbc:hsqldb:hsql://localhost/stocks"
-          username="sa"/>-->
+          url="jdbc:postgresql://localhost/stocks"
+          username="postgres"/>-->
+    <Resource driverClassName="org.hsqldb.jdbc.JDBCDriver"
+              maxIdle="2"
+              maxTotal="20"
+              maxWaitMillis="5000"
+              name="jdbc/CubaDS"
+              password=""
+              type="javax.sql.DataSource"
+              url="jdbc:hsqldb:hsql://localhost/personal-finances"
+              username="sa"/>
 </Context>
