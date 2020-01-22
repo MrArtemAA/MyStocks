@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <views xmlns="http://schemas.haulmont.com/cuba/view.xsd">
-    <view class="ru.artemaa.stocks.entity.Stock"
+    <view class="ru.artemaa.finances.personal.entity.Stock"
           extends="_local"
           name="stock-detailed-view">
         <property fetch="AUTO"
@@ -9,7 +9,7 @@
         <property name="industry"
                   view="_minimal"/>
     </view>
-    <view class="ru.artemaa.stocks.entity.Operation"
+    <view class="ru.artemaa.finances.personal.entity.Operation"
           extends="_local"
           name="operation-detailed-view">
         <property name="stock"
@@ -18,17 +18,17 @@
         <property name="portfolio"
                   view="_minimal"/>
     </view>
-    <view class="ru.artemaa.stocks.entity.portfolio.Portfolio"
+    <view class="ru.artemaa.finances.personal.entity.portfolio.Portfolio"
           extends="_local"
           name="portfolio-edit-view">
         <property name="name"/>
     </view>
-    <view class="ru.artemaa.stocks.entity.portfolio.Portfolio"
+    <view class="ru.artemaa.finances.personal.entity.portfolio.Portfolio"
           extends="_local"
           name="portfolio-browse-view">
         <property name="name"/>
     </view>
-    <view class="ru.artemaa.stocks.entity.Account"
+    <view class="ru.artemaa.finances.personal.entity.Account"
           extends="_local"
           name="account-detailed-view">
         <property name="accountType"
@@ -38,7 +38,7 @@
             <property name="code"/>
         </property>
     </view>
-    <view class="ru.artemaa.stocks.entity.operation.SimpleAccountOperation"
+    <view class="ru.artemaa.finances.personal.entity.operation.SimpleAccountOperation"
           extends="_local"
           name="simpleAccountOperation-detailed-view">
         <property name="account"
@@ -48,7 +48,7 @@
         <property name="category"
                   view="_minimal"/>
     </view>
-    <view class="ru.artemaa.stocks.entity.operation.Transfer"
+    <view class="ru.artemaa.finances.personal.entity.operation.Transfer"
           extends="_local"
           name="transfer-detailed-view">
         <property name="sourceAccount"

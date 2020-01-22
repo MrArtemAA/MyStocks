@@ -4,10 +4,10 @@
         class="ru.artemaa.finances.personal.web.stocksummary.StockSummaryBrowse"
         focusComponent="stockSummariesTable"
         lookupComponent="stockSummariesTable"
-        messagesPack="ru.artemaa.stocks.web.stocksummary">
+        messagesPack="ru.artemaa.finances.personal.web.stocksummary">
     <dsContext>
         <groupDatasource id="stockSummariesDs"
-                         class="ru.artemaa.stocks.entity.StockSummary"
+                         class="ru.artemaa.finances.personal.entity.StockSummary"
                          datasourceClass="ru.artemaa.finances.personal.web.stocksummary.StockSummaryCollectionDatasource"/>
     </dsContext>
     <dialogMode height="600"

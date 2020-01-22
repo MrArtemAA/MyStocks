@@ -4,10 +4,10 @@
         class="ru.artemaa.finances.personal.web.accountoperation.AccountOperationBrowse"
         focusComponent="accountOperationsTable"
         lookupComponent="accountOperationsTable"
-        messagesPack="ru.artemaa.stocks.web.accountoperation">
+        messagesPack="ru.artemaa.finances.personal.web.accountoperation">
     <dsContext>
         <groupDatasource id="accountOperationsDs"
-                         class="ru.artemaa.stocks.entity.operation.AccountOperation"
+                         class="ru.artemaa.finances.personal.entity.operation.AccountOperation"
                          datasourceClass="ru.artemaa.finances.personal.web.accountoperation.AccountOperationsDatasource"/>
     </dsContext>
     <dialogMode height="600"

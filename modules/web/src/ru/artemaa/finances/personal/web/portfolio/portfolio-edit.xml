@@ -4,13 +4,13 @@
         class="ru.artemaa.finances.personal.web.portfolio.PortfolioEdit"
         datasource="portfolioDs"
         focusComponent="fieldGroup"
-        messagesPack="ru.artemaa.stocks.web.portfolio">
+        messagesPack="ru.artemaa.finances.personal.web.portfolio">
     <dsContext>
         <datasource id="portfolioDs"
-                    class="ru.artemaa.stocks.entity.portfolio.Portfolio"
+                    class="ru.artemaa.finances.personal.entity.portfolio.Portfolio"
                     view="portfolio-edit-view"/>
         <collectionDatasource id="portfolioSummariesDs"
-                              class="ru.artemaa.stocks.entity.portfolio.PortfolioSummary"
+                              class="ru.artemaa.finances.personal.entity.portfolio.PortfolioSummary"
                               datasourceClass="ru.artemaa.finances.personal.web.portfolio.PortfolioSummaryCollectionDatasource"/>
     </dsContext>
     <dialogMode height="600"
@@ -27,7 +27,7 @@
                    caption="msg://editor.totalIncomeAmount"
                    editable="false"/>
         <groupBox id="incomeBox"
-                  caption="msg://ru.artemaa.stocks.entity.portfolio/Portfolio.income">
+                  caption="msg://ru.artemaa.finances.personal.entity.portfolio/Portfolio.income">
             <table id="incomeTable"
                    height="200px"
                    width="100%">

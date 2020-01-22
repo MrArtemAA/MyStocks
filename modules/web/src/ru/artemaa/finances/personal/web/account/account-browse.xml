@@ -4,10 +4,10 @@
         class="ru.artemaa.finances.personal.web.account.AccountBrowse"
         focusComponent="accountsTable"
         lookupComponent="accountsTable"
-        messagesPack="ru.artemaa.stocks.web.account">
+        messagesPack="ru.artemaa.finances.personal.web.account">
     <dsContext>
         <groupDatasource id="accountsDs"
-                         class="ru.artemaa.stocks.entity.Account"
+                         class="ru.artemaa.finances.personal.entity.Account"
                          view="account-detailed-view">
             <query>
                 <![CDATA[select e from stocks$Account e order by e.accountType.name]]>

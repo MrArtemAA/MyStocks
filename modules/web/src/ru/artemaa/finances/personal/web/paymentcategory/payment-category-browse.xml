@@ -9,13 +9,13 @@
         class="ru.artemaa.finances.personal.web.paymentcategory.PaymentCategoryBrowse"
         focusComponent="table"
         lookupComponent="table"
-        messagesPack="ru.artemaa.stocks.web.paymentcategory">
+        messagesPack="ru.artemaa.finances.personal.web.paymentcategory">
     <dsContext>
         <datasource id="paymentCategoryDs"
-                    class="ru.artemaa.stocks.entity.PaymentCategory"
+                    class="ru.artemaa.finances.personal.entity.PaymentCategory"
                     view="_local"/>
         <groupDatasource id="paymentCategoriesDs"
-                         class="ru.artemaa.stocks.entity.PaymentCategory"
+                         class="ru.artemaa.finances.personal.entity.PaymentCategory"
                          view="_local">
             <query>
                 <![CDATA[select e from stocks$PaymentCategory e]]>

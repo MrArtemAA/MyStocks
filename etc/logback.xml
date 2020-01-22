@@ -39,7 +39,7 @@
         <appender-ref ref="File"/>
     </root>
 
-    <logger name="ru.artemaa.stocks" level="ERROR"/>
+    <logger name="ru.artemaa.finances.personal" level="ERROR"/>
 
     <!-- Begin CUBA -->
 

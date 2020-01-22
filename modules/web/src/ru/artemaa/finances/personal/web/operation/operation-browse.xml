@@ -4,10 +4,10 @@
         class="ru.artemaa.finances.personal.web.operation.OperationBrowse"
         focusComponent="operationsTable"
         lookupComponent="operationsTable"
-        messagesPack="ru.artemaa.stocks.web.operation">
+        messagesPack="ru.artemaa.finances.personal.web.operation">
     <dsContext>
         <groupDatasource id="operationsDs"
-                         class="ru.artemaa.stocks.entity.Operation"
+                         class="ru.artemaa.finances.personal.entity.Operation"
                          view="operation-detailed-view">
             <query>
                 <![CDATA[select e from stocks$Operation e order by e.date desc]]>

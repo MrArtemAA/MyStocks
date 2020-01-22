@@ -4,10 +4,10 @@
         class="ru.artemaa.finances.personal.web.portfolio.PortfolioBrowse"
         focusComponent="portfoliosTable"
         lookupComponent="portfoliosTable"
-        messagesPack="ru.artemaa.stocks.web.portfolio">
+        messagesPack="ru.artemaa.finances.personal.web.portfolio">
     <dsContext>
         <groupDatasource id="portfoliosDs"
-                         class="ru.artemaa.stocks.entity.portfolio.Portfolio"
+                         class="ru.artemaa.finances.personal.entity.portfolio.Portfolio"
                          view="portfolio-browse-view">
             <query>
                 <![CDATA[select e from stocks$Portfolio e]]>

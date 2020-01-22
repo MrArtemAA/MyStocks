@@ -9,13 +9,13 @@
         class="ru.artemaa.finances.personal.web.industry.IndustryBrowse"
         focusComponent="table"
         lookupComponent="table"
-        messagesPack="ru.artemaa.stocks.web.industry">
+        messagesPack="ru.artemaa.finances.personal.web.industry">
     <dsContext>
         <datasource id="industryDs"
-                    class="ru.artemaa.stocks.entity.Industry"
+                    class="ru.artemaa.finances.personal.entity.Industry"
                     view="_local"/>
         <collectionDatasource id="industriesDs"
-                              class="ru.artemaa.stocks.entity.Industry"
+                              class="ru.artemaa.finances.personal.entity.Industry"
                               view="_local">
             <query>
                 <![CDATA[select e from stocks$Industry e]]>

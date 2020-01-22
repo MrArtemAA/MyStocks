@@ -9,13 +9,13 @@
         class="ru.artemaa.finances.personal.web.investidea.InvestIdeaBrowse"
         focusComponent="table"
         lookupComponent="table"
-        messagesPack="ru.artemaa.stocks.web.investidea">
+        messagesPack="ru.artemaa.finances.personal.web.investidea">
     <dsContext>
         <datasource id="investIdeaDs"
-                    class="ru.artemaa.stocks.entity.InvestIdea"
+                    class="ru.artemaa.finances.personal.entity.InvestIdea"
                     view="_local"/>
         <groupDatasource id="investIdeasDs"
-                         class="ru.artemaa.stocks.entity.InvestIdea"
+                         class="ru.artemaa.finances.personal.entity.InvestIdea"
                          view="_local">
             <query>
                 <![CDATA[select e from stocks$InvestIdea e]]>

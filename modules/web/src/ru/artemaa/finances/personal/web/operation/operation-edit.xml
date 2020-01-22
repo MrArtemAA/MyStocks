@@ -4,20 +4,20 @@
         class="ru.artemaa.finances.personal.web.operation.OperationEdit"
         datasource="operationDs"
         focusComponent="fieldGroup"
-        messagesPack="ru.artemaa.stocks.web.operation">
+        messagesPack="ru.artemaa.finances.personal.web.operation">
     <dsContext>
         <datasource id="operationDs"
-                    class="ru.artemaa.stocks.entity.Operation"
+                    class="ru.artemaa.finances.personal.entity.Operation"
                     view="operation-detailed-view"/>
         <collectionDatasource id="stocksDs"
-                              class="ru.artemaa.stocks.entity.Stock"
+                              class="ru.artemaa.finances.personal.entity.Stock"
                               view="_minimal">
             <query>
                 <![CDATA[select e from stocks$Stock e]]>
             </query>
         </collectionDatasource>
         <collectionDatasource id="portfoliosDs"
-                              class="ru.artemaa.stocks.entity.portfolio.Portfolio"
+                              class="ru.artemaa.finances.personal.entity.portfolio.Portfolio"
                               view="_minimal"/>
     </dsContext>
     <dialogMode forceDialog="true"

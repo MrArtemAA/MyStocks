@@ -4,27 +4,27 @@
         class="ru.artemaa.finances.personal.web.stock.StockBrowse"
         focusComponent="stocksTable"
         lookupComponent="stocksTable"
-        messagesPack="ru.artemaa.stocks.web.stock">
+        messagesPack="ru.artemaa.finances.personal.web.stock">
     <dsContext>
         <datasource id="stockDs"
-                    class="ru.artemaa.stocks.entity.Stock"
+                    class="ru.artemaa.finances.personal.entity.Stock"
                     view="stock-detailed-view"/>
         <groupDatasource id="stocksDs"
-                         class="ru.artemaa.stocks.entity.Stock"
+                         class="ru.artemaa.finances.personal.entity.Stock"
                          view="stock-detailed-view">
             <query>
                 <![CDATA[select e from stocks$Stock e order by e.name]]>
             </query>
         </groupDatasource>
         <collectionDatasource id="industriesDs"
-                              class="ru.artemaa.stocks.entity.Industry"
+                              class="ru.artemaa.finances.personal.entity.Industry"
                               view="_local">
             <query>
                 <![CDATA[select e from stocks$Industry e order by e.name]]>
             </query>
         </collectionDatasource>
         <collectionDatasource id="currenciesDs"
-                              class="ru.artemaa.stocks.entity.Currency"
+                              class="ru.artemaa.finances.personal.entity.Currency"
                               datasourceClass="ru.artemaa.finances.personal.web.currency.CurrencyDatasource"/>
     </dsContext>
     <actions>

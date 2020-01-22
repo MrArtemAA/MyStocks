@@ -4,20 +4,20 @@
         class="ru.artemaa.finances.personal.web.simpleaccountoperation.SimpleAccountOperationEdit"
         datasource="simpleAccountOperationDs"
         focusComponent="fieldGroup"
-        messagesPack="ru.artemaa.stocks.web.simpleaccountoperation">
+        messagesPack="ru.artemaa.finances.personal.web.simpleaccountoperation">
     <dsContext>
         <datasource id="simpleAccountOperationDs"
-                    class="ru.artemaa.stocks.entity.operation.SimpleAccountOperation"
+                    class="ru.artemaa.finances.personal.entity.operation.SimpleAccountOperation"
                     view="simpleAccountOperation-detailed-view"/>
         <collectionDatasource id="accountsDs"
-                              class="ru.artemaa.stocks.entity.Account"
+                              class="ru.artemaa.finances.personal.entity.Account"
                               view="_local">
             <query>
                 <![CDATA[select e from stocks$Account e order by e.name]]>
             </query>
         </collectionDatasource>
         <collectionDatasource id="categoriesDs"
-                              class="ru.artemaa.stocks.entity.PaymentCategory"
+                              class="ru.artemaa.finances.personal.entity.PaymentCategory"
                               datasourceClass="ru.artemaa.finances.personal.web.paymentcategory.PaymentCategoryDatasource"
                               view="_minimal"/>
     </dsContext>

@@ -9,13 +9,13 @@
         class="ru.artemaa.finances.personal.web.accounttype.AccountTypeBrowse"
         focusComponent="table"
         lookupComponent="table"
-        messagesPack="ru.artemaa.stocks.web.accounttype">
+        messagesPack="ru.artemaa.finances.personal.web.accounttype">
     <dsContext>
         <datasource id="accountTypeDs"
-                    class="ru.artemaa.stocks.entity.AccountType"
+                    class="ru.artemaa.finances.personal.entity.AccountType"
                     view="_local"/>
         <collectionDatasource id="accountTypesDs"
-                              class="ru.artemaa.stocks.entity.AccountType"
+                              class="ru.artemaa.finances.personal.entity.AccountType"
                               view="_local">
             <query>
                 <![CDATA[select e from stocks$AccountType e]]>

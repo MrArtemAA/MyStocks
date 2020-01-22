@@ -3,7 +3,7 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:gui="http://schemas.haulmont.com/cuba/spring/cuba-gui.xsd">
     <!-- Annotation-based beans -->
-    <context:component-scan base-package="ru.artemaa.stocks"/>
+    <context:component-scan base-package="ru.artemaa.finances.personal"/>
     <bean class="com.haulmont.cuba.web.sys.remoting.WebRemoteProxyBeanCreator">
         <property name="serverSelector"
                   ref="cuba_ServerSelector"/>
@@ -18,5 +18,5 @@
             </map>
         </property>
     </bean>
-    <gui:screens base-packages="ru.artemaa.stocks.web"/>
+    <gui:screens base-packages="ru.artemaa.finances.personal.web"/>
 </beans>

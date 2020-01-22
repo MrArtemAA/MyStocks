@@ -4,13 +4,13 @@
         class="ru.artemaa.finances.personal.web.account.AccountEdit"
         datasource="accountDs"
         focusComponent="fieldGroup"
-        messagesPack="ru.artemaa.stocks.web.account">
+        messagesPack="ru.artemaa.finances.personal.web.account">
     <dsContext>
         <datasource id="accountDs"
-                    class="ru.artemaa.stocks.entity.Account"
+                    class="ru.artemaa.finances.personal.entity.Account"
                     view="account-detailed-view"/>
         <collectionDatasource id="accountTypesDs"
-                              class="ru.artemaa.stocks.entity.AccountType"
+                              class="ru.artemaa.finances.personal.entity.AccountType"
                               view="_minimal">
             <query>
                 <![CDATA[select e from stocks$AccountType e]]>

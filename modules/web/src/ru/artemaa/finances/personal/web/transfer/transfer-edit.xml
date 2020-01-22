@@ -4,13 +4,13 @@
         class="ru.artemaa.finances.personal.web.transfer.TransferEdit"
         datasource="transferDs"
         focusComponent="fieldGroup"
-        messagesPack="ru.artemaa.stocks.web.transfer">
+        messagesPack="ru.artemaa.finances.personal.web.transfer">
     <dsContext>
         <datasource id="transferDs"
-                    class="ru.artemaa.stocks.entity.operation.Transfer"
+                    class="ru.artemaa.finances.personal.entity.operation.Transfer"
                     view="transfer-detailed-view"/>
         <collectionDatasource id="accountsDs"
-                              class="ru.artemaa.stocks.entity.Account"
+                              class="ru.artemaa.finances.personal.entity.Account"
                               view="account-detailed-view">
             <query>
                 <![CDATA[select e from stocks$Account e order by e.name]]>
