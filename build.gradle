@@ -3,17 +3,24 @@ buildscript {
     repositories {
 
         maven {
-            url 'https://repo.cuba-platform.com/content/groups/work'
-            credentials {
-                username(rootProject.hasProperty('repoUser') ? rootProject['repoUser'] : 'cuba')
-                password(rootProject.hasProperty('repoPass') ? rootProject['repoPass'] : 'cuba123')
-            }
+            url 'https://dl.bintray.com/cuba-platform/main'
         }
+        jcenter()
+        mavenCentral()
 
     }
     dependencies {
         classpath "com.haulmont.gradle:cuba-plugin:$cubaVersion"
     }
+}
+
+plugins {
+    id 'io.franzbecker.gradle-lombok' version '1.14'
+}
+
+lombok {
+    version = '1.18.4'
+    sha256 = ""
 }
 
 def modulePrefix = 'personal-finances'
@@ -30,15 +37,11 @@ apply(plugin: 'cuba')
 cuba {
     artifact {
         group = 'ru.artemaa.finances'
-        version = "1.0"
+        version = "2.0"
         isSnapshot = false
     }
     tomcat {
         dir = "$project.rootDir/deploy/tomcat"
-    }
-    ide {
-
-        vcs = 'Git'
     }
 }
 
@@ -55,7 +58,9 @@ configure([globalModule, coreModule, webModule]) {
     apply(plugin: 'cuba')
 
     dependencies {
+        compileOnly 'org.projectlombok:lombok:1.18.2'
         testCompile('junit:junit:4.12')
+        testCompileOnly 'org.projectlombok:lombok:1.18.2'
     }
 
     task sourceJar(type: Jar) {
@@ -76,9 +81,6 @@ configure(globalModule) {
         }
     }
 
-    /*dependencies {
-        compileOnly('org.projectlombok:lombok:1.18.0')
-    }*/
     entitiesEnhancing {
         main {
             enabled = true
@@ -98,8 +100,6 @@ configure(coreModule) {
         compileOnly(servletApi)
         jdbc(hsql)
         testRuntime(hsql)
-        testCompile('org.hamcrest:hamcrest-library:1.3')
-        //compileOnly('org.projectlombok:lombok:1.18.0')
     }
 
     task cleanConf(description: 'Cleans up conf directory') {
@@ -120,7 +120,7 @@ configure(coreModule) {
 
     task createDb(dependsOn: assembleDbScripts, description: 'Creates local database', type: CubaDbCreation) {
         dbms = 'hsql'
-        host = 'localhost'
+        host = 'localhost:9010'
         dbName = 'personal-finances'
         dbUser = 'sa'
         dbPassword = ''
@@ -128,7 +128,7 @@ configure(coreModule) {
 
     task updateDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
         dbms = 'hsql'
-        host = 'localhost'
+        host = 'localhost:9010'
         dbName = 'personal-finances'
         dbUser = 'sa'
         dbPassword = ''
@@ -159,7 +159,7 @@ configure(webModule) {
 
     task deployConf(type: Copy) {
         from file('src')
-        include "ru/artemaa/stocks/**"
+        include "ru/artemaa/finances/personal/**"
         into "$cuba.tomcat.dir/conf/${modulePrefix}"
     }
 
